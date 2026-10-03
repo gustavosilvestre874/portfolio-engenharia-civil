@@ -1,0 +1,12 @@
+# Arquivos de sistema e temporários
+desktop.ini
+Thumbs.db
+~$*
+*.tmp
+
+# Arquivos-fonte pesados ou com metadados de clientes (mantidos fora do repositório)
+*.rvt
+*.rfa
+*.dwg
+*.bak
+*.skp
