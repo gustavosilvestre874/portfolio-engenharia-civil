@@ -5,122 +5,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gustavo Silvestre · Portfólio</title>
 <meta name="description" content="Portfólio de Engenharia Civil de Gustavo Rodrigo Silvestre da Silva: projetos de arquitetura, sistemas prediais, estruturas e topografia.">
-<style>
-  :root {
-    --bg: #f7f6f3; --surface: #ffffff; --text: #1d1f21; --muted: #5d6166;
-    --line: #e2e0db; --accent: #1f5f8b; --accent-soft: #e6eff6;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #141618; --surface: #1d2023; --text: #e9e7e3; --muted: #a2a6ab;
-            --line: #2d3135; --accent: #7fb4d9; --accent-soft: #1f2d38; }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text);
-         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  a { color: var(--accent); }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
-  header { padding: 64px 0 40px; border-bottom: 1px solid var(--line); }
-  header h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 0 0 8px; letter-spacing: -0.01em; }
-  header p { margin: 0; color: var(--muted); max-width: 680px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding: 0; list-style: none; }
-  .tags li { background: var(--accent-soft); color: var(--accent); padding: 4px 10px; border-radius: 999px; font-size: 13px; }
-  h2 { font-size: 20px; margin: 48px 0 16px; }
-  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
-          display: flex; flex-direction: column; text-decoration: none; color: inherit; transition: border-color .15s; }
-  .card:hover { border-color: var(--accent); }
-  .card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #fff; display: block; border-bottom: 1px solid var(--line); }
-  .card div { padding: 16px; }
-  .card small { color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; font-size: 12px; }
-  .card h3 { margin: 4px 0 6px; font-size: 17px; line-height: 1.3; }
-  .card p { margin: 0; color: var(--muted); font-size: 14px; }
-  .cols { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .box { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; }
-  .box h3 { margin: 0 0 8px; font-size: 16px; }
-  .box ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
-  footer { margin: 56px 0 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<header>
+
+<header class="hero">
   <div class="wrap">
+    <p class="eyebrow">Portfólio · Engenharia Civil</p>
     <h1>Gustavo Rodrigo Silvestre da Silva</h1>
-    <p>Estudante de Engenharia Civil na Escola Politécnica da USP e Técnico em Edificações pelo IFSP. Projetos executivos, modelagem BIM e desenho técnico em arquitetura, sistemas prediais, estruturas e topografia.</p>
-    <ul class="tags">
-      <li>Revit</li><li>AutoCAD</li><li>Inventor</li><li>Excel</li><li>NBR 16401</li><li>BIM</li>
-    </ul>
+    <p class="lead">Estudante de Engenharia Civil na Escola Politécnica da USP e Técnico em Edificações pelo IFSP. Projetos executivos, modelagem BIM e desenho técnico em arquitetura, sistemas prediais, estruturas e topografia.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+      <a class="btn btn-ghost" href="#contato">Contato</a>
+    </div>
+    <div class="stats">
+      <div><b>7</b><span>projetos</span></div>
+      <div><b>5</b><span>áreas da engenharia</span></div>
+      <div><b>Poli-USP</b><span>Engenharia Civil</span></div>
+      <div><b>IFSP</b><span>Técnico em Edificações</span></div>
+    </div>
   </div>
 </header>
 
 <main class="wrap">
-  <h2>Projetos</h2>
-  <div class="grid">
-    <a class="card" href="projetos/sistemas-prediais/climatizacao-hvac-escritorio-brasilia/">
-      <img src="assets/img/hvac.png" alt="Rede de dutos do sistema de climatização em 3D" loading="lazy">
-      <div><small>Sistemas prediais · Poli-USP · 2026</small>
-        <h3>Climatização (HVAC) de escritório em Brasília</h3>
-        <p>Carga térmica de 66.276 W, 2 UTAs por andar, chiller de água gelada, dutos e diagrama unifilar.</p></div>
-    </a>
-    <a class="card" href="projetos/projeto-completo/chacara-igarata/">
-      <img src="assets/img/igarata.jpg" alt="Planta, corte e perspectiva da residência" loading="lazy">
-      <div><small>Profissional · 2025</small>
-        <h3>Chácara em Igaratá</h3>
-        <p>Residência de 117,75 m²: projeto arquitetônico, estrutural preliminar e esgoto sanitário.</p></div>
-    </a>
-    <a class="card" href="projetos/arquitetura/residencia-unifamiliar-ifsp/">
-      <img src="assets/img/residencia-ifsp.jpg" alt="Prancha de cortes da residência unifamiliar" loading="lazy">
-      <div><small>Arquitetura · IFSP</small>
-        <h3>Residência unifamiliar</h3>
-        <p>Do programa de necessidades ao detalhamento: plantas, cortes, fachadas, áreas molhadas e estrutura.</p></div>
-    </a>
-    <a class="card" href="projetos/arquitetura/reforma-de-cozinha/">
-      <img src="assets/img/cozinha.png" alt="Render da cozinha reformada" loading="lazy">
-      <div><small>Interiores · Profissional · 2024</small>
-        <h3>Reforma de cozinha</h3>
-        <p>Projeto executivo com bancada em L, torre quente, marcenaria detalhada e renders 3D.</p></div>
-    </a>
-    <a class="card" href="projetos/arquitetura/condominio-residencial/">
-      <img src="assets/img/condominio.jpg" alt="Planta humanizada do pavimento-tipo" loading="lazy">
-      <div><small>Arquitetura · 2024</small>
-        <h3>Condomínio residencial</h3>
-        <p>Planta humanizada de pavimento-tipo com duas unidades, modelada em Revit.</p></div>
-    </a>
-    <a class="card" href="projetos/topografia/levantamento-topografico-poli-usp/">
-      <img src="assets/img/topografia.jpg" alt="Planta topográfica da área levantada" loading="lazy">
-      <div><small>Topografia · Poli-USP · 2024</small>
-        <h3>Levantamento topográfico</h3>
-        <p>Trabalho em grupo: poligonal de 5.693 m² com 432 pontos de detalhe na Cidade Universitária.</p></div>
-    </a>
-    <a class="card" href="projetos/desenho-tecnico/escada-e-rampas-ifsp/">
-      <img src="assets/img/rampas.jpg" alt="Planta do estudo de rampas" loading="lazy">
-      <div><small>Desenho técnico · IFSP · 2021</small>
-        <h3>Escada e rampas</h3>
-        <p>Corte de escada (1:25) e estudo de rampas acessíveis (1:50).</p></div>
-    </a>
-  </div>
+  <section id="projetos">
+    <div class="section-head">
+      <div>
+        <h2>Projetos</h2>
+        <p>Trabalhos acadêmicos e profissionais. Clique em um projeto para ver os detalhes.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrar por área">
+        <button type="button" data-filter="todos" aria-pressed="true">Todos</button>
+        <button type="button" data-filter="sistemas" aria-pressed="false">Sistemas prediais</button>
+        <button type="button" data-filter="arquitetura" aria-pressed="false">Arquitetura</button>
+        <button type="button" data-filter="estruturas" aria-pressed="false">Projeto completo</button>
+        <button type="button" data-filter="topografia" aria-pressed="false">Topografia</button>
+        <button type="button" data-filter="desenho" aria-pressed="false">Desenho técnico</button>
+      </div>
+    </div>
 
-  <h2>Formação e habilidades</h2>
-  <div class="cols">
-    <div class="box"><h3>Formação</h3><ul>
-      <li>Engenharia Civil, Escola Politécnica da USP</li>
-      <li>Técnico em Edificações, IFSP – Campus São Paulo</li>
-    </ul></div>
-    <div class="box"><h3>Softwares</h3><ul>
-      <li>Revit: Architecture e MEP</li>
-      <li>AutoCAD: cotas, plotagem, CTB, diagramação</li>
-      <li>Inventor, Excel, Word, PowerPoint</li>
-    </ul></div>
-    <div class="box"><h3>Experiência</h3><ul>
-      <li>Monitoria/Estágio no IFSP (03/2022 – 12/2022)</li>
-      <li>Projetos residenciais para clientes</li>
-      <li>Espanhol avançado</li>
-    </ul></div>
+    <div class="grid">
+      <a class="card" data-cat="sistemas" href="projetos/sistemas-prediais/climatizacao-hvac-escritorio-brasilia/">
+        <div class="thumb"><img src="assets/img/hvac.png" alt="Rede de dutos do sistema de climatização em 3D" loading="lazy"></div>
+        <div class="body"><span class="cat">Sistemas prediais · Poli-USP · 2026</span>
+          <h3>Climatização (HVAC) de escritório em Brasília</h3>
+          <p>Carga térmica de 66.276 W, 2 UTAs por andar, chiller de água gelada, dutos e diagrama unifilar.</p>
+          <span class="more">Ver projeto →</span></div>
+      </a>
+      <a class="card" data-cat="estruturas" href="projetos/projeto-completo/chacara-igarata/">
+        <div class="thumb"><img src="assets/img/igarata.jpg" alt="Planta, corte e perspectiva da residência" loading="lazy"></div>
+        <div class="body"><span class="cat">Projeto completo · Profissional · 2025</span>
+          <h3>Chácara em Igaratá</h3>
+          <p>Residência de 117,75 m²: projeto arquitetônico, estrutural preliminar e esgoto sanitário.</p>
+          <span class="more">Ver projeto →</span></div>
+      </a>
+      <a class="card" data-cat="arquitetura" href="projetos/arquitetura/residencia-unifamiliar-ifsp/">
+        <div class="thumb"><img src="assets/img/residencia-ifsp.jpg" alt="Prancha da residência unifamiliar" loading="lazy"></div>
+        <div class="body"><span class="cat">Arquitetura · IFSP</span>
+          <h3>Residência unifamiliar</h3>
+          <p>Do programa de necessidades ao detalhamento: plantas, cortes, fachadas, áreas molhadas e estrutura.</p>
+          <span class="more">Ver projeto →</span></div>
+      </a>
+      <a class="card" data-cat="arquitetura" href="projetos/arquitetura/reforma-de-cozinha/">
+        <div class="thumb"><img src="assets/img/cozinha.png" alt="Render da cozinha reformada" loading="lazy"></div>
+        <div class="body"><span class="cat">Interiores · Profissional · 2024</span>
+          <h3>Reforma de cozinha</h3>
+          <p>Projeto executivo com bancada em L, torre quente, marcenaria detalhada e renders 3D.</p>
+          <span class="more">Ver projeto →</span></div>
+      </a>
+      <a class="card" data-cat="arquitetura" href="projetos/arquitetura/condominio-residencial/">
+        <div class="thumb"><img src="assets/img/condominio.jpg" alt="Planta humanizada do pavimento-tipo" loading="lazy"></div>
+        <div class="body"><span class="cat">Arquitetura · 2024</span>
+          <h3>Condomínio residencial</h3>
+          <p>Planta humanizada de pavimento-tipo com duas unidades, modelada em Revit.</p>
+          <span class="more">Ver projeto →</span></div>
+      </a>
+      <a class="card" data-cat="topografia" href="projetos/topografia/levantamento-topografico-poli-usp/">
+        <div class="thumb"><img src="assets/img/topografia.jpg" alt="Planta topográfica da área levantada" loading="lazy"></div>
+        <div class="body"><span class="cat">Topografia · Poli-USP · 2024</span>
+          <h3>Levantamento topográfico</h3>
+          <p>Trabalho em grupo: poligonal de 5.693 m² com 432 pontos de detalhe na Cidade Universitária.</p>
+          <span class="more">Ver projeto →</span></div>
+      </a>
+      <a class="card" data-cat="desenho" href="projetos/desenho-tecnico/escada-e-rampas-ifsp/">
+        <div class="thumb"><img src="assets/img/rampas.jpg" alt="Planta do estudo de rampas" loading="lazy"></div>
+        <div class="body"><span class="cat">Desenho técnico · IFSP · 2021</span>
+          <h3>Escada e rampas</h3>
+          <p>Corte de escada (1:25) e estudo de rampas acessíveis (1:50).</p>
+          <span class="more">Ver projeto →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="section-head"><div><h2>Formação e habilidades</h2></div></div>
+    <div class="cols">
+      <div class="panel"><h3>Formação</h3><ul>
+        <li>Engenharia Civil, Escola Politécnica da USP</li>
+        <li>Técnico em Edificações, IFSP – Campus São Paulo</li>
+      </ul></div>
+      <div class="panel"><h3>Experiência</h3><ul>
+        <li>Monitoria/Estágio no IFSP (03/2022 – 12/2022)</li>
+        <li>Projetos residenciais para clientes</li>
+      </ul></div>
+      <div class="panel"><h3>Softwares</h3><ul class="chips">
+        <li>Revit Architecture</li><li>Revit MEP</li><li>AutoCAD</li><li>Inventor</li><li>Excel</li><li>Word</li><li>PowerPoint</li>
+      </ul></div>
+      <div class="panel"><h3>Conhecimentos</h3><ul class="chips">
+        <li>Projeto arquitetônico</li><li>Carga térmica / HVAC</li><li>Hidrossanitário</li><li>Concepção estrutural</li><li>Topografia</li><li>Interiores</li><li>Espanhol avançado</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <div class="contact" id="contato">
+    <div>
+      <h2>Vamos conversar?</h2>
+      <p>Em busca de oportunidades na área da construção civil.</p>
+    </div>
+    <div class="actions" style="margin:0">
+      <a class="btn btn-primary" href="mailto:gustavorodrigosilvestre@gmail.com">gustavorodrigosilvestre@gmail.com</a>
+      <!-- PREENCHER: <a class="btn btn-ghost" href="https://www.linkedin.com/in/SEU-PERFIL">LinkedIn</a> -->
+    </div>
   </div>
 </main>
 
-<footer class="wrap">
-  Contato: <a href="mailto:gustavorodrigosilvestre@gmail.com">gustavorodrigosilvestre@gmail.com</a>
-  <!-- PREENCHER: · <a href="https://www.linkedin.com/in/SEU-PERFIL">LinkedIn</a> -->
-</footer>
+<footer class="wrap">© Gustavo Rodrigo Silvestre da Silva</footer>
+<script src="assets/js/site.js"></script>
 </body>
 </html>

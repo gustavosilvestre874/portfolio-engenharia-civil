@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projeto de Climatização (HVAC): Escritório de Advocacia em Brasília/DF · Gustavo Silvestre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+<!-- Página gerada por tools/gerar_paginas.py a partir do README.md. Edite o README e rode o script. -->
+<header class="hero project">
+  <div class="wrap">
+    <a class="crumb" href="../../../#projetos">← Todos os projetos</a>
+    <p class="eyebrow" style="margin-top:28px">Sistemas prediais</p>
+    <h1>Projeto de Climatização (HVAC): Escritório de Advocacia em Brasília/DF</h1>
+    <ul class="chips"><li>PME3515 – Ar Condicionado e Ventilação · Escola Politécnica da USP</li><li>junho de 2026</li><li>trabalho acadêmico individual</li></ul>
+  </div>
+</header>
+<div class="wrap cover"><figure><img src="imagens/rede-de-dutos-3d.png" alt="Rede de dutos 3D"></figure></div>
+<main class="wrap">
+  <div class="layout">
+    <article class="prose"><h2>Objetivo</h2>
+<p>Dimensionar o sistema de climatização de um escritório de advocacia de três pavimentos em Brasília. O trabalho cobre:</p>
+<ul>
+<li>a carga térmica de resfriamento;</li>
+<li>as vazões de insuflamento por zona térmica;</li>
+<li>a seleção de terminais de ar, UTAs (fan-coils) e chiller;</li>
+<li>o diagrama unifilar do sistema AVAC.</li>
+</ul>
+<h2>Caracterização do edifício</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pavimentos</td>
+<td>3 (idênticos)</td>
+</tr>
+<tr>
+<td>Área por pavimento / total</td>
+<td>792 m² / 2.376 m²</td>
+</tr>
+<tr>
+<td>Pé-direito</td>
+<td>2,70 m</td>
+</tr>
+<tr>
+<td>Localização</td>
+<td>Brasília – DF (lat. ≈ 15° S, altitude ≈ 1.172 m)</td>
+</tr>
+<tr>
+<td>Fenestração</td>
+<td>40% da área de parede, vidro simples (2 × 4 mm)</td>
+</tr>
+<tr>
+<td>Zonas térmicas</td>
+<td>11 (T1 a T11)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Metodologia</h2>
+<ul>
+<li><strong>Normas e referências:</strong> ABNT NBR 16401 e ASHRAE Handbook – Fundamentals.</li>
+<li><strong>Condições de projeto:</strong><ul>
+<li>Externa: TBS 31,2 °C, TBU coincidente 17,9 °C, mês de pico outubro, amplitude 11,2 °C.</li>
+<li>Interna: 24 °C e 50% UR.</li>
+</ul>
+</li>
+<li><strong>Cargas externas:</strong> paredes, cobertura e vidros pelo método CLTD/CLF (DTCT corrigida), com variação horária por fachada entre 8h e 18h.</li>
+<li><strong>Cargas internas:</strong> pessoas (75 W sensível + 55 W latente por pessoa), iluminação LED (10 W/m²), equipamentos (150 W por estação de trabalho) e paredes internas adjacentes a espaços não condicionados.</li>
+<li><strong>Insuflamento:</strong> balanços de energia no ambiente e na serpentina, mais balanço de massa na caixa de mistura.</li>
+<li><strong>Terminais de ar:</strong><ul>
+<li>Rateio da vazão por zona.</li>
+<li>Difusores Trox ADLQ selecionados por efeito Coanda e critério acústico NC ≤ 35.</li>
+<li>Grelhas de retorno GRH com velocidade de face ≤ 2,0 m/s.</li>
+</ul>
+</li>
+<li><strong>Dutos:</strong> método de perda de carga constante (<em>equal friction</em>), com balanceamento por caminho.</li>
+</ul>
+<h2>Resultados</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Resultado</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carga térmica global, 2º andar (pico às 18h)</td>
+<td><strong>66.276 W</strong> (59.731 W sensível + 6.545 W latente)</td>
+</tr>
+<tr>
+<td>Carga térmica, térreo e 1º andar</td>
+<td>48.992 W</td>
+</tr>
+<tr>
+<td>Ocupação / iluminação / equipamentos</td>
+<td>15.470 W (119 pessoas) / 7.750 W / 8.890 W</td>
+</tr>
+<tr>
+<td>Capacidade das serpentinas, 2º andar</td>
+<td>90.207 W ≈ <strong>25,6 TR</strong> (2 UTAs)</td>
+</tr>
+<tr>
+<td>Capacidade das serpentinas, térreo e 1º andar</td>
+<td>74.735 W ≈ 21,25 TR por andar</td>
+</tr>
+<tr>
+<td>Chiller</td>
+<td>Carrier AquaSmart 30EX/EV (modular, R-410A)</td>
+</tr>
+<tr>
+<td>Filtragem</td>
+<td>Dois estágios: G4 + F7</td>
+</tr>
+<tr>
+<td>Terminais</td>
+<td>Difusores Trox ADLQ tam. 2 a 4; grelhas GRH com v_face entre 1,30 e 1,40 m/s</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Conclusões principais:</strong></p>
+<ul>
+<li>A <strong>fachada oeste é a condição crítica</strong>: fator solar de 450 W/m² e até 1.950 W por janela. Ela exige atenção especial ao sombreamento.</li>
+<li>A divisão em <strong>2 UTAs por andar</strong> reduz a seção dos dutos (preserva o pé-direito do forro), reduz o ruído e permite zoneamento térmico independente.</li>
+<li>Recomenda-se prever <em>dampers</em> e caixas <strong>VAV</strong> para o controle.</li>
+</ul>
+<p><img alt="Carga térmica por ambiente" src="imagens/carga-termica-por-ambiente.png" /></p>
+<p><img alt="Diagrama unifilar" src="imagens/diagrama-unifilar.png" /></p>
+<p><strong>Ferramentas:</strong> Revit (modelagem MEP), Excel (memórias de cálculo).</p><h2>Galeria</h2><div class="gallery"><button type="button" aria-label="Ampliar imagem"><img src="imagens/carga-termica-paredes.png" alt="carga termica paredes" loading="lazy"></button><button type="button" aria-label="Ampliar imagem"><img src="imagens/carga-termica-teto.png" alt="carga termica teto" loading="lazy"></button><button type="button" aria-label="Ampliar imagem"><img src="imagens/fachada-leste.png" alt="fachada leste" loading="lazy"></button><button type="button" aria-label="Ampliar imagem"><img src="imagens/fachada-norte.png" alt="fachada norte" loading="lazy"></button><button type="button" aria-label="Ampliar imagem"><img src="imagens/fachada-oeste.png" alt="fachada oeste" loading="lazy"></button><button type="button" aria-label="Ampliar imagem"><img src="imagens/fachada-sul.png" alt="fachada sul" loading="lazy"></button></div><h2>Vídeos</h2><div class="videos"><video controls preload="metadata" src="videos/percurso-virtual-1.mp4"></video><video controls preload="metadata" src="videos/percurso-virtual-2.mp4"></video><video controls preload="metadata" src="videos/percurso-virtual-3.mp4"></video></div></article>
+    <aside class="aside">
+      <div class="panel"><h3>Ficha do projeto</h3><dl class="facts"><div><dt>Disciplina</dt><dd>PME3515 – Ar Condicionado e Ventilação · Escola Politécnica da USP</dd></div><div><dt>Período</dt><dd>junho de 2026</dd></div><div><dt>Tipo</dt><dd>trabalho acadêmico individual</dd></div></dl></div>
+      <div class="panel"><h3>Arquivos</h3><ul class="files"><li><a href="docs/relatorio-tecnico-PME3515.pdf" download><span class="ext">PDF</span><span class="name">Relatório técnico completo (42 p.)<small>relatorio-tecnico-PME3515.pdf · 2.9 MB</small></span></a></li><li><a href="docs/apresentacao-final-PME3515.pdf" download><span class="ext">PDF</span><span class="name">Apresentação final (20 slides)<small>apresentacao-final-PME3515.pdf · 1.1 MB</small></span></a></li><li><a href="docs/planta-hvac-2-andar.pdf" download><span class="ext">PDF</span><span class="name">Planta do sistema HVAC, 2º andar (1:50)<small>planta-hvac-2-andar.pdf · 2.8 MB</small></span></a></li><li><a href="docs/planta-base.pdf" download><span class="ext">PDF</span><span class="name">Planta base de arquitetura<small>planta-base.pdf · 138 KB</small></span></a></li><li><a href="planilhas/calculo-termico-vidros-paredes.xlsx" download><span class="ext">XLSX</span><span class="name">Premissas e carga térmica de vidros e paredes internas<small>calculo-termico-vidros-paredes.xlsx · 22 KB</small></span></a></li><li><a href="planilhas/insuflamento-e-cargas.xlsx" download><span class="ext">XLSX</span><span class="name">Cargas por zona e cálculo de insuflamento<small>insuflamento-e-cargas.xlsx · 171 KB</small></span></a></li><li><a href="planilhas/dimensionamento-dutos.xlsx" download><span class="ext">XLSX</span><span class="name">Dimensionamento e balanceamento de dutos (equal friction)<small>dimensionamento-dutos.xlsx · 19 KB</small></span></a></li><li><a href="planilhas/memoria-calculo-vidros.pdf" download><span class="ext">PDF</span><span class="name">Memória de cálculo: vidros<small>memoria-calculo-vidros.pdf · 474 KB</small></span></a></li><li><a href="planilhas/memoria-calculo-paredes-internas.pdf" download><span class="ext">PDF</span><span class="name">Memória de cálculo: paredes internas<small>memoria-calculo-paredes-internas.pdf · 417 KB</small></span></a></li></ul></div>
+    </aside>
+  </div>
+  <nav class="pager"><span></span><a class="next" href="../../../projetos/projeto-completo/chacara-igarata/"><small>Próximo projeto →</small>Chácara em Igaratá/SP: Arquitetura, Estrutura e Esgoto</a></nav>
+</main>
+<footer class="wrap">Gustavo Rodrigo Silvestre da Silva · <a href="mailto:gustavorodrigosilvestre@gmail.com">gustavorodrigosilvestre@gmail.com</a></footer>
+<div class="lightbox" role="dialog" aria-label="Imagem ampliada"><button type="button" aria-label="Fechar">×</button><img alt=""></div>
+<script src="../../../assets/js/site.js"></script>
+</body>
+</html>
