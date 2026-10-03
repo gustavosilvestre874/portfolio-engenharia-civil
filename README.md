@@ -5,7 +5,7 @@ Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (A
 
 <!-- PREENCHER: semestre/ano de ingresso na Poli-USP e ano de conclusão do técnico no IFSP -->
 
-🌐 **Página do portfólio:** <!-- PREENCHER após ativar o GitHub Pages: https://SEU-USUARIO.github.io/portfolio-engenharia-civil/ -->
+🌐 **Página do portfólio:** [gustavosilvestre874.github.io/portfolio-engenharia-civil](https://gustavosilvestre874.github.io/portfolio-engenharia-civil/)
 
 ---
 
