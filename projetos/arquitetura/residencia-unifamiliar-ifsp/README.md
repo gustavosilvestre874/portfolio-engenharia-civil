@@ -1,7 +1,7 @@
 # Residência Unifamiliar: Projeto Arquitetônico Completo
 
-**Disciplina:** PJIU4 · Técnico em Edificações, IFSP – Campus São Paulo
-**Período:** <!-- PREENCHER: ano/semestre -->
+**Disciplina:** PJIU4 · Técnico em Edificações, IFSP – Campus São Paulo  
+**Período:** <!-- PREENCHER: ano/semestre -->  
 **Tipo:** trabalho acadêmico individual
 
 ![Prancha do projeto](../../../assets/img/residencia-ifsp.jpg)

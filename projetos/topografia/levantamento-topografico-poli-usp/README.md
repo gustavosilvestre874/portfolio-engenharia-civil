@@ -1,7 +1,7 @@
 # Levantamento Topográfico: Cidade Universitária (USP)
 
-**Disciplina:** Geomática · Escola Politécnica da USP <!-- PREENCHER: código da disciplina -->
-**Data:** 25 de junho de 2024
+**Disciplina:** Geomática · Escola Politécnica da USP <!-- PREENCHER: código da disciplina -->  
+**Data:** 25 de junho de 2024  
 **Tipo:** trabalho em grupo (7 integrantes)
 <!-- PREENCHER: sua contribuição no grupo (campo, cálculo da poligonal, desenho etc.) -->
 

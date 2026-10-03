@@ -1,7 +1,7 @@
 # Escada e Rampas: Desenho Técnico de Circulação Vertical
 
-**Disciplina:** DCCU2 · Técnico em Edificações, IFSP – Campus São Paulo
-**Data:** novembro de 2021
+**Disciplina:** DCCU2 · Técnico em Edificações, IFSP – Campus São Paulo  
+**Data:** novembro de 2021  
 **Tipo:** atividades acadêmicas individuais
 
 ![Estudo de rampas](../../../assets/img/rampas.jpg)

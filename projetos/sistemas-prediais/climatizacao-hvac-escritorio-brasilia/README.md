@@ -1,7 +1,7 @@
 # Projeto de Climatização (HVAC): Escritório de Advocacia em Brasília/DF
 
-**Disciplina:** PME3515 – Ar Condicionado e Ventilação · Escola Politécnica da USP
-**Período:** junho de 2026
+**Disciplina:** PME3515 – Ar Condicionado e Ventilação · Escola Politécnica da USP  
+**Período:** junho de 2026  
 **Tipo:** trabalho acadêmico individual
 
 ![Rede de dutos 3D](imagens/rede-de-dutos-3d.png)

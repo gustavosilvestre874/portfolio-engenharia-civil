@@ -1,7 +1,7 @@
 # Condomínio Residencial: Planta do Pavimento-Tipo
 
-**Data da prancha:** setembro de 2024
-**Tipo:** <!-- PREENCHER: trabalho acadêmico (disciplina) ou estudo pessoal/profissional -->
+**Data da prancha:** setembro de 2024  
+**Tipo:** <!-- PREENCHER: trabalho acadêmico (disciplina) ou estudo pessoal/profissional -->  
 **Ferramenta:** Autodesk Revit
 
 ![Planta do nível 1](../../../assets/img/condominio.jpg)

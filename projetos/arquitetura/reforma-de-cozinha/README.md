@@ -1,7 +1,7 @@
 # Reforma de Cozinha: Projeto Executivo de Interiores
 
-**Tipo:** projeto profissional para cliente particular
-**Data:** novembro de 2024
+**Tipo:** projeto profissional para cliente particular  
+**Data:** novembro de 2024  
 **Fase:** executivo
 
 ![Render da cozinha](imagens/render-1.png)

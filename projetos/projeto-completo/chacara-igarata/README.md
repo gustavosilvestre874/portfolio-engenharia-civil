@@ -1,7 +1,7 @@
 # Chácara em Igaratá/SP: Arquitetura, Estrutura e Esgoto
 
-**Tipo:** projeto profissional para cliente particular (atuação como técnico projetista)
-**Período:** abril a julho de 2025
+**Tipo:** projeto profissional para cliente particular (atuação como técnico projetista)  
+**Período:** abril a julho de 2025  
 **Local:** Igaratá – SP
 
 ![Projeto arquitetônico preliminar](imagens/arquitetonico-preliminar.png)
