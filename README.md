@@ -68,4 +68,9 @@ Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (A
 
 ---
 
-<sub>© 2026 Gustavo Rodrigo Silvestre da Silva. Todos os direitos reservados: é permitido visualizar e citar com crédito; cópia, modificação e reutilização dependem de autorização (ver [LICENSE](LICENSE)). Os documentos de clientes foram anonimizados e os trabalhos em grupo estão identificados como tal.</sub>
+## Licença
+
+- **Conteúdo do portfólio** (projetos, desenhos, imagens, PDFs, vídeos, planilhas e textos): © 2026 Gustavo Rodrigo Silvestre da Silva, **todos os direitos reservados**. É permitido visualizar e citar com crédito; cópia, modificação e reutilização dependem de autorização. Ver [LICENSE-CONTEUDO.md](LICENSE-CONTEUDO.md).
+- **Código do site** (HTML, CSS, JavaScript e script gerador): licença [MIT](LICENSE).
+
+<sub>Os documentos de clientes foram anonimizados e os trabalhos em grupo estão identificados como tal.</sub>
