@@ -48,7 +48,7 @@ Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (A
 
 - **Engenharia Civil**, Escola Politécnica da USP, ingresso em 2024
 - **Técnico em Edificações**, IFSP – Campus São Paulo, concluído em 2022
-- **Qualificações profissionais (IFSP):** Desenhista de Construção Civil e Inspetor de Obras
+- **Qualificações profissionais (IFSP):** Desenhista de Construção Civil (955,30 horas) e Inspetor de Obras (898,20 horas)
 
 ---
 
@@ -68,4 +68,4 @@ Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (A
 
 ---
 
-<sub>Os documentos de clientes foram anonimizados: carimbos com dados pessoais foram removidos. Trabalhos em grupo estão identificados como tal.</sub>
+<sub>© 2026 Gustavo Rodrigo Silvestre da Silva. Todos os direitos reservados: é permitido visualizar e citar com crédito; cópia, modificação e reutilização dependem de autorização (ver [LICENSE](LICENSE)). Os documentos de clientes foram anonimizados e os trabalhos em grupo estão identificados como tal.</sub>

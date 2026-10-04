@@ -171,7 +171,7 @@ def pagina(i, rel):
   </div>
   {pager}
 </main>
-<footer class="wrap">Gustavo Rodrigo Silvestre da Silva · <a href="mailto:gustavorodrigosilvestre@gmail.com">gustavorodrigosilvestre@gmail.com</a> · <a href="https://www.linkedin.com/in/gustavo-silvestre-0649b1244" target="_blank" rel="noopener">LinkedIn</a></footer>
+<footer class="wrap">© 2026 Gustavo Rodrigo Silvestre da Silva · Todos os direitos reservados · <a href="mailto:gustavorodrigosilvestre@gmail.com">gustavorodrigosilvestre@gmail.com</a> · <a href="https://www.linkedin.com/in/gustavo-silvestre-0649b1244" target="_blank" rel="noopener">LinkedIn</a></footer>
 <div class="lightbox" role="dialog" aria-label="Imagem ampliada"><button type="button" aria-label="Fechar">×</button><img alt=""></div>
 <script src="{raiz}assets/js/site.js"></script>
 </body>
