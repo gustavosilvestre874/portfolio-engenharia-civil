@@ -8,12 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 </head>
 <body>
 
 <header class="hero">
   <!-- Planta baixa animada: as linhas são traçadas em sequência (ver assets/js/site.js) -->
+  <div class="hero-art" aria-hidden="true">
   <svg class="hero-drawing" viewBox="0 0 800 560" aria-hidden="true">
     <g class="axis">
       <line class="d" pathLength="1" x1="140" y1="54" x2="140" y2="520"/>
@@ -76,6 +77,8 @@
       <text class="d" x="720" y="466">N</text>
     </g>
   </svg>
+  <canvas class="hero-3d"></canvas>
+  </div>
   <div class="wrap">
     <p class="eyebrow">Portfólio · Engenharia Civil</p>
     <h1>Gustavo Rodrigo Silvestre da Silva</h1>
@@ -206,6 +209,6 @@
 </main>
 
 <footer class="wrap">© 2026 Gustavo Rodrigo Silvestre da Silva · Conteúdo: todos os direitos reservados, permitido visualizar e citar com crédito · Código do site: licença MIT</footer>
-<script src="assets/js/site.js?v=3"></script>
+<script src="assets/js/site.js?v=4"></script>
 </body>
 </html>
