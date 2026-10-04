@@ -29,7 +29,7 @@ CATEGORIAS = {
     "topografia": "Topografia",
     "desenho-tecnico": "Desenho técnico",
 }
-VERSAO = "2"  # aumente (e no index.html) ao mudar o CSS/JS, para os navegadores não usarem cache antigo
+VERSAO = "3"  # aumente (e no index.html) ao mudar o CSS/JS, para os navegadores não usarem cache antigo
 IMG_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 
 
