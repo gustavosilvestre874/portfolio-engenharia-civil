@@ -1,9 +1,7 @@
 # Gustavo Rodrigo Silvestre da Silva — Portfólio de Engenharia Civil
 
-Estudante de **Engenharia Civil na Escola Politécnica da USP** e **Técnico em Edificações pelo IFSP – Campus São Paulo**.
+Estudante de **Engenharia Civil na Escola Politécnica da USP** (ingresso em 2024) e **Técnico em Edificações pelo IFSP – Campus São Paulo** (concluído em 2022).
 Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (AutoCAD), com trabalhos acadêmicos e profissionais em arquitetura, sistemas prediais, estruturas e topografia.
-
-<!-- PREENCHER: semestre/ano de ingresso na Poli-USP e ano de conclusão do técnico no IFSP -->
 
 🌐 **Página do portfólio:** [gustavosilvestre874.github.io/portfolio-engenharia-civil](https://gustavosilvestre874.github.io/portfolio-engenharia-civil/)
 
@@ -46,10 +44,19 @@ Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (A
 
 ---
 
+## Formação
+
+- **Engenharia Civil**, Escola Politécnica da USP, ingresso em 2024
+- **Técnico em Edificações**, IFSP – Campus São Paulo, concluído em 2022
+- **Qualificações profissionais (IFSP):** Desenhista de Construção Civil e Inspetor de Obras
+
+---
+
 ## Experiência
 
-- **Monitoria/Estágio — IFSP**, de 03/2022 a 12/2022
-  <!-- PREENCHER: descrição das atividades -->
+- **Bolsista de monitoria em Sistemas Prediais Hidráulicos e Sanitários Residenciais**, IFSP, de 03/2022 a 12/2022
+  - Elaboração de projetos
+  - Apoio a alunos de Engenharia e do curso Técnico no uso do AutoCAD
 - **Projetos como técnico em edificações**: projetos residenciais para clientes (ver Chácara Igaratá e Reforma de cozinha)
 
 ---
@@ -57,7 +64,7 @@ Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (A
 ## Contato
 
 - 📧 E-mail: [gustavorodrigosilvestre@gmail.com](mailto:gustavorodrigosilvestre@gmail.com)
-- 💼 LinkedIn: <!-- PREENCHER: link do LinkedIn -->
+- 💼 LinkedIn: [linkedin.com/in/gustavo-silvestre-0649b1244](https://www.linkedin.com/in/gustavo-silvestre-0649b1244)
 
 ---
 
