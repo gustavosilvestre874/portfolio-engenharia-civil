@@ -29,6 +29,7 @@ CATEGORIAS = {
     "topografia": "Topografia",
     "desenho-tecnico": "Desenho técnico",
 }
+VERSAO = "2"  # aumente (e no index.html) ao mudar o CSS/JS, para os navegadores não usarem cache antigo
 IMG_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 
 
@@ -148,7 +149,7 @@ def pagina(i, rel):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{raiz}assets/css/style.css">
+<link rel="stylesheet" href="{raiz}assets/css/style.css?v={VERSAO}">
 </head>
 <body>
 <!-- Página gerada por tools/gerar_paginas.py a partir do README.md. Edite o README e rode o script. -->
@@ -173,7 +174,7 @@ def pagina(i, rel):
 </main>
 <footer class="wrap">© 2026 Gustavo Rodrigo Silvestre da Silva · Conteúdo com todos os direitos reservados · <a href="mailto:gustavorodrigosilvestre@gmail.com">gustavorodrigosilvestre@gmail.com</a> · <a href="https://www.linkedin.com/in/gustavo-silvestre-0649b1244" target="_blank" rel="noopener">LinkedIn</a></footer>
 <div class="lightbox" role="dialog" aria-label="Imagem ampliada"><button type="button" aria-label="Fechar">×</button><img alt=""></div>
-<script src="{raiz}assets/js/site.js"></script>
+<script src="{raiz}assets/js/site.js?v={VERSAO}"></script>
 </body>
 </html>
 """

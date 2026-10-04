@@ -105,6 +105,20 @@ section { padding: 64px 0 8px; }
 .chips li { background: var(--chip); color: var(--text); padding: 5px 12px; border-radius: 999px; font-size: 14px; }
 .hero .chips li { background: rgba(255,255,255,.1); color: #fff; }
 
+/* Formação com logos das instituições */
+.panel .edu { list-style: none; padding: 0; display: grid; gap: 18px; }
+.panel .edu li + li { margin-top: 0; }
+.edu li { display: flex; gap: 14px; align-items: flex-start; }
+.edu .logo { flex: none; width: 64px; height: 64px; border-radius: 12px; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; padding: 6px; }
+.edu .logo img { width: 100%; height: 100%; object-fit: contain; }
+.edu b { display: block; color: var(--text); font-size: 15px; }
+.edu span { display: block; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.edu span + span { margin-top: 4px; }
+
+/* Softwares com ícones */
+.chips.tools li { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 8px; }
+.chips.tools img { width: 20px; height: 20px; object-fit: contain; }
+
 /* Contato e rodapé */
 .contact { margin: 64px 0 0; background: var(--brand); color: #fff; border-radius: var(--radius); padding: 40px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
 .contact h2 { margin: 0 0 4px; font-size: 26px; }
