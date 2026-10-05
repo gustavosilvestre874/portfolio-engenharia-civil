@@ -3,7 +3,8 @@
 Estudante de **Engenharia Civil na Escola Politécnica da USP** (ingresso em 2024) e **Técnico em Edificações pelo IFSP – Campus São Paulo** (concluído em 2022).
 Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (AutoCAD), com trabalhos acadêmicos e profissionais em arquitetura, sistemas prediais, estruturas e topografia.
 
-🌐 **Página do portfólio:** [gustavosilvestre874.github.io/portfolio-engenharia-civil](https://gustavosilvestre874.github.io/portfolio-engenharia-civil/)
+🌐 **Página do portfólio:** [gustavosilvestre874.github.io/portfolio-engenharia-civil](https://gustavosilvestre874.github.io/portfolio-engenharia-civil/)  
+📄 **Portfólio em PDF:** [baixar (3 MB)](assets/pdf/portfolio-gustavo-silvestre.pdf)
 
 ---
 

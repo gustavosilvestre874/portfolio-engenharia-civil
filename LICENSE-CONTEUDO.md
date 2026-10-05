@@ -7,7 +7,7 @@
 | Parte do repositório | Licença |
 |---|---|
 | **Código do site:** `index.html`, `assets/css/`, `assets/js/`, `tools/` e a estrutura HTML das páginas `projetos/**/index.html` | [MIT](LICENSE) |
-| **Conteúdo do portfólio:** tudo o que estiver dentro de `projetos/` (textos dos README, desenhos técnicos, pranchas, PDFs, imagens, renders, vídeos, planilhas, memórias de cálculo e dados) e as imagens de `assets/img/` (exceto os logotipos de terceiros em `assets/img/logos/`) | **Todos os direitos reservados**, conforme este documento |
+| **Conteúdo do portfólio:** tudo o que estiver dentro de `projetos/` (textos dos README, desenhos técnicos, pranchas, PDFs, imagens, renders, vídeos, planilhas, memórias de cálculo e dados) , as imagens de `assets/img/` (exceto os logotipos de terceiros em `assets/img/logos/`) e o portfólio em PDF de `assets/pdf/` | **Todos os direitos reservados**, conforme este documento |
 
 A licença MIT **não se aplica** ao conteúdo do portfólio.
 
