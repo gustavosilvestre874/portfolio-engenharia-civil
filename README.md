@@ -7,6 +7,20 @@ Experiência em projetos executivos, modelagem BIM (Revit) e desenho técnico (A
 
 ---
 
+## Sobre mim
+
+<img src="assets/img/foto-gustavo.jpg" alt="Foto de Gustavo Rodrigo Silvestre da Silva" width="170" align="right">
+
+Sou estudante de Engenharia Civil na Escola Politécnica da USP, onde entrei em 2024, e Técnico em Edificações pelo IFSP desde 2022. Minha trajetória na construção civil começou no curso técnico: lá me qualifiquei como Desenhista de Construção Civil e Inspetor de Obras, e fui bolsista de monitoria em Sistemas Prediais Hidráulicos e Sanitários, elaborando projetos e ajudando alunos de Engenharia e do Técnico no AutoCAD.
+
+Desde então, desenvolvo projetos acadêmicos e para clientes, da arquitetura aos sistemas prediais, passando por estrutura e topografia. Tenho facilidade com projetos executivos e com o fluxo de trabalho BIM.
+
+Sou comunicativo, organizado e detalhista, e gosto de aprender coisas novas. Busco uma oportunidade na construção civil onde eu possa aprender e contribuir com a equipe.
+
+📍 São Paulo – SP
+
+---
+
 ## Projetos
 
 | Projeto | Área | Contexto | Destaques |

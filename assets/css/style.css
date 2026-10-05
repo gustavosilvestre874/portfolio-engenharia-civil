@@ -135,6 +135,16 @@ section { padding: 64px 0 8px; }
 .chips li { background: var(--chip); color: var(--text); padding: 5px 12px; border-radius: 999px; font-size: 14px; }
 .hero .chips li { background: rgba(255,255,255,.1); color: #fff; }
 
+/* Sobre mim */
+.about { display: grid; gap: 28px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+@media (min-width: 760px) { .about { grid-template-columns: 240px 1fr; gap: 44px; padding: 36px; } }
+.about-photo { width: 100%; max-width: 240px; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 18px; border: 4px solid var(--surface); box-shadow: 0 0 0 1px var(--line), var(--shadow); justify-self: center; }
+.about h2 { font-size: clamp(24px, 3vw, 30px); margin: 6px 0 12px; }
+.about p { margin: 0 0 12px; color: var(--muted); }
+.about .chips { margin-top: 16px; }
+.about .eyebrow-ink, .eyebrow-ink { color: var(--accent-ink); margin: 0; }
+.eyebrow-ink::before { background: var(--accent-ink); }
+
 /* Formação com logos das instituições */
 .panel .edu { list-style: none; padding: 0; display: grid; gap: 18px; }
 .panel .edu li + li { margin-top: 0; }
