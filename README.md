@@ -54,7 +54,7 @@ Sou comunicativo, organizado e detalhista, e gosto de aprender coisas novas. Bus
 
 **Idiomas**
 - Espanhol: avançado
-<!-- PREENCHER: inglês ou outros idiomas, se houver -->
+- Inglês: intermediário
 
 ---
 
