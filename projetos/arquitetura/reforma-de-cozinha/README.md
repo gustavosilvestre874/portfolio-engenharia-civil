@@ -5,7 +5,7 @@
 **Fase:** executivo (12 folhas)  
 **Ferramenta:** SketchUp (modelo 3D e quantitativo)
 
-![Render da cozinha](imagens/render-1.png)
+![Perspectiva 3D da cozinha](imagens/capa-3d.jpg)
 
 ## Objetivo
 
@@ -59,7 +59,8 @@ As notas de execução que constam nas pranchas incluem:
 
 | | |
 |---|---|
-| ![Render 2](imagens/render-2.png) | ![Render 3](imagens/render-3.png) |
+| ![Render 1](imagens/render-1.png) | ![Render 2](imagens/render-2.png) |
+| ![Render 3](imagens/render-3.png) | |
 
 ## Pranchas
 
