@@ -1,4 +1,6 @@
-"""Gera o portfólio em PDF (A4) a partir dos README.md dos projetos.
+"""Gera o portfólio em PDF (A4), versão apresentação: 1–2 páginas por projeto.
+
+Fichas vêm dos README.md; destaques, números e imagens ficam no dicionário DADOS.
 
 Uso:  python tools/gerar_pdf.py [caminho/saida.pdf]
 Requer: pip install reportlab pymupdf pillow resvg-py
@@ -11,18 +13,16 @@ import tempfile
 
 import pymupdf as fitz
 from PIL import Image as PILImage
-from reportlab.graphics import renderPDF
 from reportlab.graphics.barcode.qr import QrCodeWidget
 from reportlab.graphics.shapes import Drawing
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import (BaseDocTemplate, CondPageBreak, Flowable, Frame, Image, KeepTogether,
-                                NextPageTemplate, PageBreak, PageTemplate, Paragraph, Spacer, Table,
+from reportlab.platypus import (BaseDocTemplate, CondPageBreak, Flowable, Frame, Image,
+                                KeepTogether, NextPageTemplate, PageBreak, PageTemplate, Paragraph, Spacer, Table,
                                 TableStyle)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -31,7 +31,7 @@ NOME = "Gustavo Rodrigo Silvestre da Silva"
 EMAIL = "gustavorodrigosilvestre@gmail.com"
 LINKEDIN = "linkedin.com/in/gustavo-silvestre-0649b1244"
 
-# Mesma ordem e resumos dos cartões do site
+# Ordem do PDF: projetos mais fortes primeiro
 PROJETOS = [
     ("projetos/sistemas-prediais/climatizacao-hvac-escritorio-brasilia", "Sistemas prediais · Poli-USP · 2026",
      "Climatização (HVAC) de escritório em Brasília", "assets/img/hvac.png",
@@ -39,24 +39,24 @@ PROJETOS = [
     ("projetos/projeto-completo/chacara-igarata", "Projeto completo · Profissional · 2025",
      "Chácara em Igaratá", "assets/img/igarata.jpg",
      "Residência de 117,75 m²: projeto arquitetônico, estrutural preliminar e esgoto sanitário."),
-    ("projetos/arquitetura/residencia-unifamiliar-ifsp", "Arquitetura · IFSP",
-     "Residência unifamiliar", "assets/img/residencia-ifsp.jpg",
-     "Do programa de necessidades ao detalhamento, em 11 pranchas: plantas, fachadas, cortes, áreas molhadas, implantação e estrutura."),
     ("projetos/arquitetura/reforma-de-cozinha", "Interiores · Profissional · 2024",
      "Reforma de cozinha", "assets/img/cozinha.jpg",
      "Executivo em 12 folhas: 3D, plantas e vistas, marcenaria detalhada, quantitativo e marmoraria."),
+    ("projetos/arquitetura/residencia-unifamiliar-ifsp", "Arquitetura · IFSP",
+     "Residência unifamiliar", "assets/img/residencia-ifsp.jpg",
+     "Do programa de necessidades ao detalhamento, em 11 pranchas: plantas, fachadas, cortes, áreas molhadas, implantação e estrutura."),
     ("projetos/design-biofilico/escritorio-com-vista-para-jardim", "Design biofílico · Estudo pessoal",
      "Escritório com vista para o jardim", "assets/img/escritorio-jardim.jpg",
      "Home office com uma grande abertura para o jardim, baseado em estudos que associam a natureza a mais calma e concentração."),
     ("projetos/design-biofilico/dormitorio-para-descansar", "Design biofílico · Estudo pessoal",
      "Dormitório para descansar", "assets/img/dormitorio.jpg",
      "Quarto pensado para o descanso: luz quente e indireta, madeira, uma paisagem como ponto focal e tudo organizado."),
-    ("projetos/arquitetura/condominio-residencial", "Arquitetura · 2024",
-     "Condomínio residencial", "assets/img/condominio.jpg",
-     "Planta humanizada de pavimento-tipo com duas unidades, modelada em Revit."),
     ("projetos/topografia/levantamento-topografico-poli-usp", "Topografia · Poli-USP · 2024",
      "Levantamento topográfico", "assets/img/topografia.jpg",
      "Trabalho em grupo: poligonal de 5.693 m² com 432 pontos de detalhe na Cidade Universitária."),
+    ("projetos/arquitetura/condominio-residencial", "Arquitetura · 2024",
+     "Condomínio residencial", "assets/img/condominio.jpg",
+     "Planta humanizada de pavimento-tipo com duas unidades, modelada em Revit."),
     ("projetos/desenho-tecnico/desenho-construcao-civil-ifsp", "Desenho técnico · IFSP · 2022",
      "Desenho de Construção Civil", "assets/img/desenho-construcao-civil.jpg",
      "Quatro pranchas de uma residência: plantas, cortes e gradil, vistas, detalhes e tabelas de esquadrias."),
@@ -102,10 +102,11 @@ TMP = pathlib.Path(tempfile.mkdtemp(prefix="pdf_portfolio_"))
 
 
 # ---------- Imagens ----------
-def preparar_imagem(path, max_px=1700):
+def preparar_imagem(path, max_px=1500):
     """Reduz e converte para JPEG/PNG leve; SVG é rasterizado. Devolve (arquivo, largura, altura)."""
     path = pathlib.Path(path)
-    out = TMP / (re.sub(r"\W", "_", str(path.relative_to(ROOT))) + ".png")
+    nome = str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else path.stem
+    out = TMP / (re.sub(r"\W", "_", nome) + ".png")
     if path.suffix.lower() == ".svg":
         try:  # resvg desenha degradês corretamente (ícones do Office)
             import resvg_py
@@ -127,7 +128,7 @@ def preparar_imagem(path, max_px=1700):
         im = im.convert("RGB")
     im.thumbnail((max_px, max_px))
     out = out.with_suffix(".jpg")
-    im.save(out, quality=85, optimize=True)
+    im.save(out, quality=80, optimize=True)
     return str(out), im.width, im.height
 
 
@@ -176,95 +177,6 @@ def ler_readme(pasta):
     texto = "\n".join(corpo)
     texto = re.split(r"^## Arquivos\s*$", texto, flags=re.M)[0]  # arquivos ficam no site
     return titulo, meta, capa, texto
-
-
-def tabela_md(linhas, pasta):
-    rows = []
-    for l in linhas:
-        cells = [c.strip() for c in l.strip().strip("|").split("|")]
-        if all(re.fullmatch(r":?-{2,}:?", c) for c in cells if c):
-            continue
-        rows.append(cells)
-    if not rows:
-        return None
-    so_imagens = all(re.fullmatch(r"!\[.*?\]\(.+?\)", c) or not c for r in rows for c in r)
-    ncol = max(len(r) for r in rows)
-    colw = CW / ncol
-    data = []
-    for i, r in enumerate(rows):
-        linha = []
-        for c in r + [""] * (ncol - len(r)):
-            im = re.fullmatch(r"!\[.*?\]\((.+?)\)", c)
-            if im:
-                linha.append(imagem(pasta / im.group(1), colw - 14, 150, moldura=False))
-            else:
-                linha.append(Paragraph(inline(c), S["cellh"] if (i == 0 and not so_imagens) else S["cell"]))
-        data.append(linha)
-    if so_imagens:
-        data = [d for d in data if any(not isinstance(x, Paragraph) or x.text for x in d)]
-    t = Table(data, colWidths=[colw] * ncol, repeatRows=0 if so_imagens else 1)
-    st = [("VALIGN", (0, 0), (-1, -1), "TOP"), ("TOPPADDING", (0, 0), (-1, -1), 5),
-          ("BOTTOMPADDING", (0, 0), (-1, -1), 5), ("LEFTPADDING", (0, 0), (-1, -1), 7)]
-    if not so_imagens:
-        st += [("BACKGROUND", (0, 0), (-1, 0), CHIP), ("LINEBELOW", (0, 0), (-1, -1), 0.5, LINE),
-               ("BOX", (0, 0), (-1, -1), 0.6, LINE)]
-    t.setStyle(TableStyle(st))
-    return t
-
-
-def md_flowables(md, pasta):
-    out, linhas, i = [], md.splitlines(), 0
-    item = re.compile(r"^(\s*)(?:[-*]|\d+\.)\s+(.*)$")
-    while i < len(linhas):
-        l = linhas[i]
-        if not l.strip():
-            i += 1
-            continue
-        if l.startswith("## "):
-            out.append(CondPageBreak(60))
-            out.append(SectionTitle(l[3:].strip()))
-            i += 1
-        elif l.startswith("### "):
-            out.append(Paragraph(inline(l[4:]), S["h3"]))
-            i += 1
-        elif l.startswith("|"):
-            bloco = []
-            while i < len(linhas) and linhas[i].startswith("|"):
-                bloco.append(linhas[i]); i += 1
-            t = tabela_md(bloco, pasta)
-            if t:
-                out += [Spacer(1, 3), KeepTogether([t]) if len(bloco) <= 14 else t, Spacer(1, 8)]
-        elif l.startswith(">"):
-            bloco = []
-            while i < len(linhas) and linhas[i].startswith(">"):
-                bloco.append(linhas[i].lstrip("> ")); i += 1
-            q = Table([[Paragraph(inline(" ".join(bloco)), S["quote"])]], colWidths=[CW])
-            q.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, -1), CHIP), ("LINEBEFORE", (0, 0), (0, -1), 2.5, ORANGE),
-                                   ("LEFTPADDING", (0, 0), (-1, -1), 10), ("TOPPADDING", (0, 0), (-1, -1), 6),
-                                   ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
-            out += [q, Spacer(1, 8)]
-        elif re.match(r"^!\[.*?\]\(.+?\)\s*$", l):
-            src = re.match(r"^!\[.*?\]\((.+?)\)", l).group(1)
-            out += [Spacer(1, 4), imagem(pasta / src, CW, 250), Spacer(1, 8)]
-            i += 1
-        elif item.match(l):
-            while i < len(linhas) and (item.match(linhas[i]) or (linhas[i].startswith("  ") and linhas[i].strip())):
-                m = item.match(linhas[i])
-                if m:
-                    nivel = len(m.group(1)) // 2
-                    st = ParagraphStyle("li", parent=S["body"], leftIndent=12 + 12 * nivel, bulletIndent=2 + 12 * nivel,
-                                        spaceAfter=2.5)
-                    marca = "•" if nivel == 0 else "–"
-                    out.append(Paragraph(inline(m.group(2)), st, bulletText=marca))
-                i += 1
-            out.append(Spacer(1, 4))
-        else:
-            par = [l.strip()]
-            i += 1
-            while i < len(linhas) and linhas[i].strip() and not re.match(r"^(#|\||>|!\[|\s*[-*]\s|\s*\d+\.\s)", linhas[i]):
-                par.append(linhas[i].strip()); i += 1
-            out.append(Paragraph(inline(" ".join(par)), S["body"]))
-    return out
 
 
 # ---------- Elementos visuais ----------
@@ -443,15 +355,6 @@ def rodape(c, doc):
     c.restoreState()
 
 
-def bloco(titulo, conteudo, largura):
-    t = Table([[Paragraph(titulo, S["h3"])]] + [[x] for x in conteudo], colWidths=[largura])
-    t.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.6, LINE), ("BACKGROUND", (0, 0), (-1, -1), colors.white),
-                           ("LEFTPADDING", (0, 0), (-1, -1), 12), ("RIGHTPADDING", (0, 0), (-1, -1), 12),
-                           ("TOPPADDING", (0, 0), (0, 0), 11), ("BOTTOMPADDING", (0, -1), (-1, -1), 11),
-                           ("TOPPADDING", (0, 1), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -2), 3)]))
-    return KeepTogether([t])
-
-
 SOBRE_MIM = [
     "Sou estudante de Engenharia Civil na Escola Politécnica da USP, onde entrei em 2024, e Técnico em Edificações pelo "
     "IFSP desde 2022. Minha trajetória na construção civil começou no curso técnico: lá me qualifiquei como Desenhista de "
@@ -464,120 +367,322 @@ SOBRE_MIM = [
 ]
 
 
-def pagina_sobre_mim():
-    foto = imagem(ROOT / "assets/img/foto-gustavo.jpg", 150, 150, moldura=False)
-    texto = [Paragraph(t, S["body"]) for t in SOBRE_MIM]
-    texto.append(Paragraph("São Paulo – SP · Poli-USP · Técnico em Edificações (IFSP) · Espanhol avançado · Inglês intermediário",
-                           ParagraphStyle("chips", parent=S["muted"], textColor=ORANGE_INK)))
-    t = Table([[foto, texto]], colWidths=[165, CW - 165])
-    t.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0),
-                           ("RIGHTPADDING", (0, 0), (0, 0), 15)]))
-    return [Paragraph("SOBRE MIM", S["eyebrow"]), Spacer(1, 3), Paragraph("Quem sou", S["h1"]), t, Spacer(1, 22)]
+def url_projeto(rel):
+    return SITE + rel + "/"
 
 
-def pagina_sobre():
-    out = [Paragraph("SOBRE", S["eyebrow"]), Spacer(1, 3), Paragraph("Formação e habilidades", S["h1"])]
+# Conteúdo resumido de cada projeto para o PDF (mesmos dados dos README, em formato de apresentação)
+DADOS = {
+    "projetos/sistemas-prediais/climatizacao-hvac-escritorio-brasilia": {
+        "hero": "imagens/rede-de-dutos-3d.png",
+        "numeros": [("66.276 W", "carga térmica de pico (2º andar)"), ("25,6 TR", "capacidade das serpentinas (2º andar)"),
+                    ("2.376 m²", "área climatizada em 3 pavimentos"), ("11", "zonas térmicas")],
+        "destaques": [
+            "Carga térmica pelo método CLTD/CLF (ASHRAE) e pela NBR 16401, com variação horária por fachada.",
+            "Vazões de insuflamento por zona, a partir de balanços de energia e de massa.",
+            "Seleção de difusores Trox ADLQ e grelhas GRH com critério acústico NC ≤ 35.",
+            "2 UTAs por andar, chiller Carrier AquaSmart e filtragem G4 + F7.",
+            "Dutos dimensionados por perda de carga constante e diagrama unifilar do sistema.",
+            "Fachada oeste identificada como condição crítica (até 1.950 W por janela).",
+        ],
+        "galeria": [("imagens/carga-termica-por-ambiente.png", "Carga térmica por ambiente e por fonte"),
+                    ("imagens/diagrama-unifilar.png", "Diagrama unifilar do sistema AVAC"),
+                    ("imagens/fachada-oeste.png", "Variação horária da carga: fachada oeste"),
+                    ("imagens/carga-termica-teto.png", "Carga térmica de cobertura por zona")],
+    },
+    "projetos/projeto-completo/chacara-igarata": {
+        "hero": "imagens/arquitetonico-preliminar.png",
+        "numeros": [("117,75 m²", "área construída"), ("601,01 m²", "terreno"),
+                    ("41,22%", "de solo permeável"), ("3", "disciplinas integradas")],
+        "destaques": [
+            "Projeto profissional para cliente, como técnico projetista (abril a julho de 2025).",
+            "Arquitetônico preliminar: planta 1:50, corte e perspectiva 3D.",
+            "Estrutural: brocas Ø30, sapatas, baldrames 20×30, pilares 15×20 e vigas 15×40.",
+            "Esgoto: tubulações de 40, 50 e 100 mm com caimento de 1–2%, caixas de inspeção e de gordura.",
+            "Tabelas automáticas de conexões e peças hidrossanitárias extraídas do modelo.",
+        ],
+        "galeria": [("imagens/estrutural-preliminar-concepcao.png", "Concepção estrutural: planta, cortes e 3D"),
+                    ("imagens/estrutural-fundacoes-vigas-pilares.png", "Fundações, baldrames, pilares e vigas"),
+                    ("imagens/esgoto-sanitario.png", "Esgoto sanitário: planta, detalhes e isométricos")],
+    },
+    "projetos/arquitetura/reforma-de-cozinha": {
+        "hero": "imagens/capa-3d.jpg",
+        "numeros": [("12", "folhas de projeto executivo"), ("5", "folhas de marcenaria"),
+                    ("3,80 × 1,80 m", "área do ambiente")],
+        "destaques": [
+            "Bancada em \"L\", torre quente para forno e micro-ondas e nicho iluminado em LED.",
+            "Marcenaria detalhada módulo a módulo (1:10 e 1:20), com notas de execução.",
+            "Quantitativo das peças de MDF extraído do modelo no SketchUp, com estimativa de chapas e custo.",
+            "Marmoraria: bancada em mármore preto com recortes para cuba e cooktop.",
+            "Pontos elétricos previstos para eletrodomésticos, LED e depurador.",
+        ],
+        "galeria": [("pranchas/02-planta.jpg", "Folha 02: planta 1:20"),
+                    ("pranchas/04-vista.jpg", "Folha 04: vista cotada 1:20"),
+                    ("pranchas/08-marcenaria-torre-quente.jpg", "Folha 08: marcenaria da torre quente"),
+                    ("pranchas/12-marmoraria.jpg", "Folha 12: marmoraria")],
+    },
+    "projetos/arquitetura/residencia-unifamiliar-ifsp": {
+        "hero": "imagens/capa-pav2.jpg",
+        "numeros": [("11", "pranchas"), ("2", "pavimentos"), ("10 × 29 m", "lote")],
+        "destaques": [
+            "Programa de necessidades a partir de entrevista com as clientes: 3 dormitórios, suíte com closet.",
+            "Estudo volumétrico e setorização em áreas social, íntima, de serviços e circulação.",
+            "Plantas 1:50 com teto verde e laje acessível; fachadas, cortes e detalhes 1:20.",
+            "Elevações de áreas molhadas com tabelas de metais e louças; implantação 1:100.",
+            "Estrutura: pilares e vigas 20×40, lajes h = 14 cm e detalhamento de armaduras.",
+        ],
+        "galeria": [("pranchas/02-estudo-volumetrico.jpg", "Estudo volumétrico"),
+                    ("pranchas/07-fachadas-e-isometrica.jpg", "Fachadas e isométrica"),
+                    ("pranchas/08-cortes-e-detalhes.jpg", "Cortes e detalhes"),
+                    ("pranchas/11-estrutura.jpg", "Estrutura e armaduras")],
+    },
+    "projetos/design-biofilico/escritorio-com-vista-para-jardim": {
+        "hero": "imagens/render-1.jpg",
+        "numeros": [("+15%", "produtividade com plantas (Nieuwenhuis et al., 2014)"),
+                    ("40 s", "de vista verde melhoram a atenção (Lee et al., 2015)")],
+        "destaques": [
+            "Conceito: design biofílico, com a natureza sempre no campo de visão de quem trabalha.",
+            "Abertura para o jardim ocupando a parede ao lado da mesa.",
+            "Luz quente e indireta em LED, madeira e tons terrosos.",
+            "Base científica: Ulrich (1984), Kaplan (1995), Nieuwenhuis et al. (2014) e Lee et al. (2015).",
+        ],
+        "galeria": [("imagens/render-2.jpg", "Mesa de trabalho com o jardim ao lado"),
+                    ("imagens/render-3.jpg", "Detalhe do jardim e da mesa")],
+    },
+    "projetos/design-biofilico/dormitorio-para-descansar": {
+        "hero": "imagens/render-1.jpg",
+        "numeros": [("≈ 90 min", "a menos de melatonina com luz ambiente antes de dormir (Gooley et al., 2011)")],
+        "destaques": [
+            "Iluminação em camadas, com LED quente e indireto para a noite.",
+            "Painel ripado de madeira e marcenaria no mesmo tom, equilibrados com tons neutros.",
+            "Paisagem natural como ponto focal no lugar da TV.",
+            "Organização com nichos e armário de vidro fumê.",
+            "Base científica: Gooley et al. (2011), Tsunetsugu et al. (2007), Saxbe e Repetti (2010).",
+        ],
+        "galeria": [("imagens/render-2.jpg", "Painel ripado e armário com vidro fumê"),
+                    ("imagens/render-3.jpg", "Painel de madeira com nichos iluminados")],
+    },
+    "projetos/topografia/levantamento-topografico-poli-usp": {
+        "hero": "imagens/planta-topografica.png",
+        "numeros": [("5.693 m²", "área da poligonal"), ("432", "pontos de detalhe"),
+                    ("107", "árvores levantadas"), ("7", "integrantes")],
+        "destaques": [
+            "Levantamento planialtimétrico na Cidade Universitária, entre o Prédio da Engenharia Civil e o Biênio.",
+            "Poligonal de 8 vértices referenciada à RN2008.",
+            "Pontos de detalhe por irradiação, codificados por tipo de elemento.",
+            "Processamento das coordenadas (E, N, cota) e planta topográfica em CAD (1:500).",
+        ],
+        "galeria": [],
+    },
+    "projetos/arquitetura/condominio-residencial": {
+        "hero": "docs/planta-nivel-1.pdf",
+        "numeros": [("39,86 m²", "sala"), ("34,51 m²", "varanda gourmet"), ("2", "elevadores")],
+        "destaques": [
+            "Edifício residencial com duas unidades por pavimento e circulação vertical central.",
+            "Modelagem BIM em Revit, com planta humanizada 1:50 e áreas dos ambientes.",
+            "Unidade-tipo com suíte, dois dormitórios, cozinha, lavanderia e varanda gourmet.",
+        ],
+        "galeria": [],
+    },
+    "projetos/desenho-tecnico/desenho-construcao-civil-ifsp": {
+        "hero": "pranchas/01-plantas-inferior-superior-cobertura.jpg",
+        "numeros": [("4", "folhas"), ("14", "janelas especificadas"), ("16", "portas especificadas")],
+        "destaques": [
+            "Plantas, cortes e gradil, vistas, detalhes e tabelas de uma residência de dois pavimentos.",
+            "Especificação de revestimentos, soleiras, peitoris e alvenaria.",
+            "Detalhes construtivos: rufo, vergas, contrapiso, impermeabilização e calha.",
+        ],
+        "galeria": [("pranchas/02-cortes-e-gradil.jpg", "Folha 02: cortes e gradil"),
+                    ("pranchas/03-vistas.jpg", "Folha 03: vistas"),
+                    ("pranchas/04-detalhes-e-tabelas.jpg", "Folha 04: detalhes e tabelas")],
+    },
+    "projetos/desenho-tecnico/escada-e-rampas-ifsp": {
+        "hero": "docs/rampas-planta.pdf",
+        "numeros": [("7,83%", "inclinação das rampas acessíveis"), ("1:25", "corte da escada")],
+        "destaques": [
+            "Corte AA de escada com numeração dos degraus e níveis de piso.",
+            "Estudo de rampas com guia de balizamento, guarda-corpo e sinalização de acessibilidade.",
+        ],
+        "galeria": [("docs/escada-corte-AA.pdf", "Corte AA da escada (1:25)")],
+    },
+}
+
+
+class Marcador(Flowable):
+    """Registra em que página um projeto começa (para o índice)."""
+    def __init__(self, chave):
+        super().__init__()
+        self.chave = chave
+
+    def wrap(self, aw, ah):
+        return 0, 0
+
+    def draw(self):
+        PAGINAS[self.chave] = self.canv.getPageNumber()
+
+
+PAGINAS = {}
+
+
+def qr(url, tam):
+    w = QrCodeWidget(url)
+    b = w.getBounds()
+    d = Drawing(tam, tam, transform=[tam / (b[2] - b[0]), 0, 0, tam / (b[3] - b[1]), 0, 0])
+    d.add(w)
+    return d
+
+
+def caixa(conteudo, largura, fundo=colors.white, pad=10):
+    t = Table([[conteudo]], colWidths=[largura])
+    t.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.6, LINE), ("BACKGROUND", (0, 0), (-1, -1), fundo),
+                           ("LEFTPADDING", (0, 0), (-1, -1), pad), ("RIGHTPADDING", (0, 0), (-1, -1), pad),
+                           ("TOPPADDING", (0, 0), (-1, -1), pad), ("BOTTOMPADDING", (0, 0), (-1, -1), pad),
+                           ("VALIGN", (0, 0), (-1, -1), "TOP")]))
+    return t
+
+
+def pagina_indice(com_paginas):
+    out = [Paragraph("PROJETOS", S["eyebrow"]), Spacer(1, 3), Paragraph("Índice", S["h1"]),
+           Paragraph(f"Cada projeto tem uma página completa no portfólio online, com todas as pranchas, planilhas e "
+                     f"vídeos: <font color='#b45a17'>{SITE.replace('https://', '')}</font>", S["muted"]),
+           Spacer(1, 12)]
+    linhas = []
+    st_num = ParagraphStyle("n", fontName="UI-B", fontSize=20, leading=22, textColor=ORANGE)
+    st_tit = ParagraphStyle("t", fontName="UI-B", fontSize=10.5, leading=13, textColor=TEXT)
+    st_pg = ParagraphStyle("p", fontName="UI-B", fontSize=11, leading=13, textColor=NAVY, alignment=2)
+    for i, (rel, cat, titulo, thumb, resumo) in enumerate(PROJETOS, 1):
+        pg = str(PAGINAS.get(rel, "")) if com_paginas else ""
+        linhas.append([Paragraph(f"{i:02d}", st_num), imagem(ROOT / thumb, 74, 50, moldura=False),
+                       [Paragraph(titulo, st_tit), Paragraph(cat.upper(), S["eyebrow"]), Paragraph(resumo, S["caption"])],
+                       Paragraph(pg, st_pg)])
+    t = Table(linhas, colWidths=[34, 84, CW - 34 - 84 - 34, 34])
+    t.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LINEBELOW", (0, 0), (-1, -1), 0.5, LINE),
+                           ("TOPPADDING", (0, 0), (-1, -1), 7), ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+                           ("LEFTPADDING", (0, 0), (-1, -1), 2)]))
+    out.append(t)
+    return out
+
+
+def pagina_sobre_compacta():
+    out = [Paragraph("SOBRE MIM", S["eyebrow"]), Spacer(1, 3), Paragraph("Quem sou", S["h1"])]
+    corpo = ParagraphStyle("b2", parent=S["body"], fontSize=9, leading=13, spaceAfter=4)
+    foto = imagem(ROOT / "assets/img/foto-gustavo.jpg", 118, 118, moldura=False)
+    texto = [Paragraph(t, corpo) for t in SOBRE_MIM]
+    texto.append(Paragraph("São Paulo – SP · Espanhol avançado · Inglês intermediário",
+                           ParagraphStyle("c", parent=S["muted"], textColor=ORANGE_INK)))
+    t = Table([[foto, texto]], colWidths=[132, CW - 132])
+    t.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
+    out += [t, Spacer(1, 12)]
+
     logos = ROOT / "assets/img/logos"
+    meia = (CW - 12) / 2
 
-    def formacao(logo, titulo, linhas):
-        img = imagem(logos / logo, 40, 40, moldura=False)
-        cx = Table([[img]], colWidths=[50], rowHeights=[50])
-        cx.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.6, LINE), ("ALIGN", (0, 0), (-1, -1), "CENTER"),
-                                ("VALIGN", (0, 0), (-1, -1), "MIDDLE")]))
-        txt = [Paragraph(f"<b>{titulo}</b>", S["body"])] + [Paragraph(l, S["muted"]) for l in linhas]
-        t = Table([[cx, txt]], colWidths=[60, CW - 24 - 60])
-        t.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0),
-                               ("BOTTOMPADDING", (0, 0), (-1, -1), 8)]))
-        return t
-
-    out.append(bloco("Formação", [
-        formacao("poli-usp.png", "Engenharia Civil", ["Escola Politécnica da USP · ingresso em 2024"]),
-        formacao("ifsp.svg", "Técnico em Edificações", [
-            "IFSP – Campus São Paulo · concluído em 2022",
-            "Qualificações: Desenhista de Construção Civil (955,30 horas) e Inspetor de Obras (898,20 horas)"]),
-    ], CW))
-    out.append(Spacer(1, 12))
-    out.append(bloco("Experiência", [
-        Paragraph("<b>Bolsista de monitoria em Sistemas Prediais Hidráulicos e Sanitários Residenciais</b> · IFSP, "
-                  "03/2022 – 12/2022", S["body"]),
-        Paragraph("• Elaboração de projetos<br/>• Apoio a alunos de Engenharia e do curso Técnico no uso do AutoCAD",
-                  S["muted"]),
-        Spacer(1, 4),
-        Paragraph("<b>Projetos como técnico em edificações</b>: projetos residenciais para clientes "
-                  "(Chácara Igaratá e Reforma de cozinha)", S["body"]),
-    ], CW))
-    out.append(Spacer(1, 12))
+    def form(logo, titulo, linhas):
+        img = imagem(logos / logo, 30, 30, moldura=False)
+        return Table([[img, [Paragraph(f"<b>{titulo}</b>", corpo)] + [Paragraph(l, S["caption"]) for l in linhas]]],
+                     colWidths=[38, meia - 20 - 38],
+                     style=[("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                            ("BOTTOMPADDING", (0, 0), (-1, -1), 6)])
+    formacao = [Paragraph("Formação", S["h3"]),
+                form("poli-usp.png", "Engenharia Civil", ["Escola Politécnica da USP · ingresso em 2024"]),
+                form("ifsp.svg", "Técnico em Edificações", ["IFSP – Campus São Paulo · concluído em 2022",
+                     "Qualificações: Desenhista de Construção Civil (955,30 h) e Inspetor de Obras (898,20 h)"])]
+    experiencia = [Paragraph("Experiência", S["h3"]),
+                   Paragraph("<b>Bolsista de monitoria</b> em Sistemas Prediais Hidráulicos e Sanitários Residenciais, "
+                             "IFSP (03/2022 – 12/2022): elaboração de projetos e apoio a alunos no AutoCAD.", corpo),
+                   Paragraph("<b>Técnico projetista:</b> projetos residenciais para clientes "
+                             "(Chácara Igaratá e Reforma de cozinha).", corpo)]
+    duas = Table([[caixa(formacao, meia - 20), caixa(experiencia, meia - 20)]], colWidths=[meia + 12, meia])
+    duas.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                              ("RIGHTPADDING", (0, 0), (-1, -1), 0)]))
+    out += [duas, Spacer(1, 12)]
 
     softwares = [("revit-icone.svg", "Revit Architecture"), ("revit-icone.svg", "Revit MEP"),
-                 ("autocad-icone.svg", "AutoCAD"), ("inventor-icone.svg", "Inventor"), ("sketchup-icone.svg", "SketchUp"), ("vray-icone.png", "V-Ray"), ("excel.svg", "Excel"),
+                 ("autocad-icone.svg", "AutoCAD"), ("inventor-icone.svg", "Inventor"),
+                 ("sketchup-icone.svg", "SketchUp"), ("vray-icone.png", "V-Ray"), ("excel.svg", "Excel"),
                  ("word.svg", "Word"), ("powerpoint.svg", "PowerPoint")]
-    linhas_sw, linha = [], []
-    for logo, nome in softwares:
-        linha.append(Table([[imagem(logos / logo, 14, 14, moldura=False) if logo else "", Paragraph(nome, S["cell"])]],
-                           colWidths=[20, 100], style=[("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-                                                       ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
-        if len(linha) == 3:
-            linhas_sw.append(linha); linha = []
-    if linha:
-        linhas_sw.append(linha + [""] * (3 - len(linha)))
-    grid = Table(linhas_sw, colWidths=[(CW - 24) / 3] * 3)
-    grid.setStyle(TableStyle([("LEFTPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 5)]))
-    out.append(bloco("Softwares", [grid], CW))
-    out.append(Spacer(1, 12))
-    conhecimentos = ["Projeto arquitetônico: do programa de necessidades ao executivo",
-                     "Cálculo de carga térmica e projeto de climatização (ABNT NBR 16401, ASHRAE Handbook)",
-                     "Instalações hidrossanitárias (esgoto)",
-                     "Concepção estrutural de residências (fundações, vigas, pilares)",
-                     "Levantamento topográfico e planta planialtimétrica",
-                     "Projeto de interiores e marcenaria", "Design biofílico: natureza e bem-estar nos ambientes", "Espanhol avançado", "Inglês intermediário"]
-    out.append(bloco("Conhecimentos", [Paragraph("<br/>".join("• " + k for k in conhecimentos), S["muted"])], CW))
+    cel = [Table([[imagem(logos / l, 12, 12, moldura=False), Paragraph(n, S["cell"])]], colWidths=[17, (meia - 20) / 2 - 20],
+                 style=[("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                        ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2)])
+           for l, n in softwares]
+    grid = Table([cel[i:i + 2] + [""] * (2 - len(cel[i:i + 2])) for i in range(0, len(cel), 2)], colWidths=[(meia - 20) / 2] * 2)
+    grid.setStyle(TableStyle([("LEFTPADDING", (0, 0), (-1, -1), 0)]))
+    conhec = ["Projeto arquitetônico, do programa ao executivo", "Carga térmica e climatização (NBR 16401, ASHRAE)",
+              "Instalações hidrossanitárias", "Concepção estrutural de residências", "Levantamento topográfico",
+              "Interiores, marcenaria e quantitativos", "Design biofílico"]
+    c2 = Paragraph("<br/>".join("• " + k for k in conhec), ParagraphStyle("k", parent=S["caption"], fontSize=8.4, leading=12))
+    duas2 = Table([[caixa([Paragraph("Softwares", S["h3"]), grid], meia - 20),
+                    caixa([Paragraph("Conhecimentos", S["h3"]), c2], meia - 20)]], colWidths=[meia + 12, meia])
+    duas2.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                               ("RIGHTPADDING", (0, 0), (-1, -1), 0)]))
+    out.append(duas2)
     return out
 
 
-def pagina_sumario():
-    out = [Paragraph("PROJETOS", S["eyebrow"]), Spacer(1, 3), Paragraph("Sumário de projetos", S["h1"]),
-           Paragraph(f"Os arquivos completos de cada projeto (PDFs, planilhas e vídeos) estão disponíveis no portfólio "
-                     f"online: <font color='#b45a17'>{SITE.replace('https://', '')}</font>", S["muted"]), Spacer(1, 10)]
-    gap = 10
-    cw = (CW - 2 * gap) / 3
-    cards = []
-    for i, (rel, cat, titulo, thumb, resumo) in enumerate(PROJETOS, 1):
-        img = imagem(ROOT / thumb, cw - 16, 82, moldura=False)
-        corpo = [img, Spacer(1, 6), Paragraph(cat.upper(), S["eyebrow"]),
-                 Paragraph(f"<b>{i:02d} · {titulo}</b>", S["h3"]), Paragraph(resumo, S["muted"])]
-        t = Table([[corpo]], colWidths=[cw], rowHeights=[200])
-        t.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.6, LINE), ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                               ("LEFTPADDING", (0, 0), (-1, -1), 8), ("RIGHTPADDING", (0, 0), (-1, -1), 8),
-                               ("TOPPADDING", (0, 0), (-1, -1), 8), ("BACKGROUND", (0, 0), (-1, -1), colors.white)]))
-        cards.append(t)
-    linhas = [cards[i:i + 3] + [""] * (3 - len(cards[i:i + 3])) for i in range(0, len(cards), 3)]
-    g = Table(linhas, colWidths=[cw + gap, cw + gap, cw])
-    g.setStyle(TableStyle([("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-                           ("BOTTOMPADDING", (0, 0), (-1, -1), 12), ("VALIGN", (0, 0), (-1, -1), "TOP")]))
-    out.append(g)
-    return out
+def imagem_projeto(pasta, caminho, max_w, max_h, moldura=True):
+    p = pasta / caminho
+    if p.suffix.lower() == ".pdf":  # desenhos em PDF: renderiza a primeira página
+        out = TMP / (re.sub(r"\W", "_", str(p.relative_to(ROOT))) + "_render.png")
+        if not out.exists():
+            pg = fitz.open(p)[0]
+            z = 1600 / max(pg.rect.width, pg.rect.height)
+            pg.get_pixmap(matrix=fitz.Matrix(z, z), alpha=False).save(out)
+        p = out
+    return imagem(p, max_w, max_h, moldura)
 
 
-def paginas_projeto(rel, cat):
+def paginas_apresentacao(num, rel, cat):
     pasta = ROOT / rel
-    titulo, meta, capa_img, md = ler_readme(pasta)
-    out = [ProjectHeader(cat, titulo, meta), Spacer(1, 12)]
-    if capa_img:
-        out += [imagem(pasta / capa_img, CW, 200), Spacer(1, 6)]
-    out += md_flowables(md, pasta)
-    # Galeria: imagens da pasta que não aparecem no texto (até 6)
-    usados = set(re.findall(r"\]\((imagens/[^)]+)\)", (pasta / "README.md").read_text(encoding="utf-8")))
-    extras = [p for p in sorted((pasta / "imagens").glob("*")) if p.suffix.lower() in (".png", ".jpg", ".jpeg")
-              and f"imagens/{p.name}" not in usados][:6] if (pasta / "imagens").exists() else []
-    if extras:
-        out += [CondPageBreak(200), SectionTitle("Galeria")]
-        cw = (CW - 10) / 2
-        cells = [imagem(p, cw - 10, 150) for p in extras]
-        linhas = [cells[i:i + 2] + [""] * (2 - len(cells[i:i + 2])) for i in range(0, len(cells), 2)]
-        g = Table(linhas, colWidths=[cw + 10, cw])
-        g.setStyle(TableStyle([("LEFTPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
-                               ("VALIGN", (0, 0), (-1, -1), "TOP")]))
-        out.append(g)
+    titulo, meta, _, _ = ler_readme(pasta)
+    dados = DADOS[rel]
+    compacto = 0 < len(dados["galeria"]) <= 2
+    out = [Marcador(rel), ProjectHeader(f"{num:02d} · {cat}", titulo, meta), Spacer(1, 10),
+           imagem_projeto(pasta, dados["hero"], CW, 150 if compacto else 250), Spacer(1, 12)]
+
+    # Coluna esquerda: destaques. Coluna direita: números, ficha e QR.
+    esq_w, dir_w = CW * 0.58, CW * 0.42 - 12
+    st_li = ParagraphStyle("li2", parent=S["body"], fontSize=9.2, leading=13, leftIndent=11, bulletIndent=0, spaceAfter=4)
+    esq = [SectionTitle("Destaques")] + [Paragraph(inline(d), st_li, bulletText="•") for d in dados["destaques"]]
+    st_n = ParagraphStyle("nn", fontName="UI-B", fontSize=16, leading=19, textColor=NAVY)
+    st_nl = ParagraphStyle("nl", fontName="UI", fontSize=7.6, leading=9.5, textColor=MUTED)
+    nums = [[Paragraph(v, st_n), Paragraph(l, st_nl)] for v, l in dados["numeros"]]
+    ncols = 2 if len(nums) > 1 else 1
+    linhas_n = [nums[i:i + ncols] + [""] * (ncols - len(nums[i:i + ncols])) for i in range(0, len(nums), ncols)]
+    tn = Table(linhas_n, colWidths=[dir_w / ncols] * ncols)
+    tn.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("BACKGROUND", (0, 0), (-1, -1), CHIP),
+                            ("GRID", (0, 0), (-1, -1), 2, colors.white), ("LEFTPADDING", (0, 0), (-1, -1), 8),
+                            ("TOPPADDING", (0, 0), (-1, -1), 7), ("BOTTOMPADDING", (0, 0), (-1, -1), 7)]))
+    st_fk = ParagraphStyle("fk", fontName="UI-B", fontSize=7, leading=9, textColor=MUTED)
+    st_fv = ParagraphStyle("fv", fontName="UI", fontSize=8.4, leading=11, textColor=TEXT)
+    ficha = []
+    for k, v in meta:
+        if k == "Entrega":
+            continue
+        ficha += [Paragraph(k.upper(), st_fk), Paragraph(inline(v), st_fv), Spacer(1, 3)]
+    link = Table([[qr(url_projeto(rel), 50),
+                   Paragraph("<b>Projeto completo</b><br/>Todas as pranchas e arquivos no portfólio online. "
+                             "Aponte a câmera para o código.", S["caption"])]],
+                 colWidths=[58, dir_w - 58],
+                 style=[("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0)])
+    dir_ = [tn, Spacer(1, 10), caixa(ficha, dir_w - 20, pad=9), Spacer(1, 8), link]
+    corpo = Table([[esq, dir_]], colWidths=[esq_w + 12, dir_w])
+    corpo.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                               ("RIGHTPADDING", (0, 0), (0, 0), 12)]))
+    out.append(corpo)
+
+    if dados["galeria"]:
+        titulo_g = [Spacer(1, 6), SectionTitle("Imagens e pranchas")]
+        if not compacto:
+            out += [CondPageBreak(230)] + titulo_g
+        cw = (CW - 12) / 2
+        cels = []
+        for cam, leg in dados["galeria"]:
+            cels.append([imagem_projeto(pasta, cam, cw - 10, 108 if compacto else 175), Spacer(1, 3), Paragraph(leg, S["caption"])])
+        linhas = [cels[i:i + 2] + [""] * (2 - len(cels[i:i + 2])) for i in range(0, len(cels), 2)]
+        g = Table(linhas, colWidths=[cw + 12, cw])
+        g.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                               ("BOTTOMPADDING", (0, 0), (-1, -1), 12)]))
+        out += [KeepTogether(titulo_g + [g])] if compacto else [g]
     out.append(PageBreak())
     return out
 
@@ -613,8 +718,8 @@ def pagina_contato():
     return [Spacer(1, 120), t, Spacer(1, 18), nota]
 
 
-def gerar(saida):
-    doc = BaseDocTemplate(str(saida), pagesize=A4, leftMargin=M, rightMargin=M, topMargin=M, bottomMargin=20 * mm,
+def montar(saida, com_paginas):
+    doc = BaseDocTemplate(saida if isinstance(saida, io.BytesIO) else str(saida), pagesize=A4, leftMargin=M, rightMargin=M, topMargin=M, bottomMargin=20 * mm,
                           title="Portfólio – Gustavo Rodrigo Silvestre da Silva", author=NOME,
                           subject="Portfólio de Engenharia Civil")
     frame = Frame(M, 20 * mm, CW, PAGE_H - M - 20 * mm, id="f", leftPadding=0, rightPadding=0,
@@ -622,12 +727,17 @@ def gerar(saida):
     doc.addPageTemplates([PageTemplate("capa", [frame], onPage=capa),
                           PageTemplate("normal", [frame], onPage=rodape)])
     story = [NextPageTemplate("normal"), PageBreak()]
-    story += pagina_sobre_mim() + pagina_sobre() + [PageBreak()]
-    story += pagina_sumario() + [PageBreak()]
-    for rel, cat, *_ in PROJETOS:
-        story += paginas_projeto(rel, cat)
+    story += pagina_sobre_compacta() + [PageBreak()]
+    story += pagina_indice(com_paginas) + [PageBreak()]
+    for i, (rel, cat, *_) in enumerate(PROJETOS, 1):
+        story += paginas_apresentacao(i, rel, cat)
     story += pagina_contato()
     doc.build(story)
+
+
+def gerar(saida):
+    montar(io.BytesIO(), com_paginas=False)  # 1ª passada: registra a página de cada projeto
+    montar(saida, com_paginas=True)
     return saida
 
 
