@@ -1,7 +1,7 @@
 # Escritório com Vista para o Jardim: Natureza e Bem-estar no Trabalho
 
 **Conceito:** design biofílico  
-**Tipo:** <!-- PREENCHER: estudo pessoal, trabalho acadêmico ou projeto para cliente -->  
+**Tipo:** estudo pessoal  
 **Entrega:** modelagem 3D e renders  
 **Ferramentas:** SketchUp (modelagem) e V-Ray (renderização)
 

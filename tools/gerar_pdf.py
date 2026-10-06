@@ -45,7 +45,7 @@ PROJETOS = [
     ("projetos/arquitetura/reforma-de-cozinha", "Interiores · Profissional · 2024",
      "Reforma de cozinha", "assets/img/cozinha.jpg",
      "Executivo em 12 folhas: 3D, plantas e vistas, marcenaria detalhada, quantitativo e marmoraria."),
-    ("projetos/design-biofilico/escritorio-com-vista-para-jardim", "Design biofílico · 3D",
+    ("projetos/design-biofilico/escritorio-com-vista-para-jardim", "Design biofílico · Estudo pessoal",
      "Escritório com vista para o jardim", "assets/img/escritorio-jardim.jpg",
      "Home office com uma grande abertura para o jardim, baseado em estudos que associam a natureza a mais calma e concentração."),
     ("projetos/arquitetura/condominio-residencial", "Arquitetura · 2024",
@@ -506,7 +506,7 @@ def pagina_sobre():
     out.append(Spacer(1, 12))
 
     softwares = [("revit-icone.svg", "Revit Architecture"), ("revit-icone.svg", "Revit MEP"),
-                 ("autocad-icone.svg", "AutoCAD"), ("inventor-icone.svg", "Inventor"), (None, "SketchUp"), (None, "V-Ray"), ("excel.svg", "Excel"),
+                 ("autocad-icone.svg", "AutoCAD"), ("inventor-icone.svg", "Inventor"), ("sketchup-icone.svg", "SketchUp"), ("vray-icone.png", "V-Ray"), ("excel.svg", "Excel"),
                  ("word.svg", "Word"), ("powerpoint.svg", "PowerPoint")]
     linhas_sw, linha = [], []
     for logo, nome in softwares:

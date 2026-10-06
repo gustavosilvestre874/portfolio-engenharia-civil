@@ -22,7 +22,7 @@ A licença MIT **não se aplica** ao conteúdo do portfólio.
 
 ## Observações
 - Projetos desenvolvidos para clientes foram anonimizados. Os direitos sobre as obras e as informações dos clientes pertencem aos respectivos proprietários.
-- Os logotipos em `assets/img/logos/` (Escola Politécnica da USP, IFSP, Autodesk AutoCAD, Revit e Inventor, Microsoft Excel, Word e PowerPoint) são marcas de seus respectivos titulares e aparecem apenas para identificar a formação e os softwares utilizados. Não são cobertos por nenhuma das duas licenças deste repositório.
+- Os logotipos em `assets/img/logos/` (Escola Politécnica da USP, IFSP, Autodesk AutoCAD, Revit e Inventor, Microsoft Excel, Word e PowerPoint, SketchUp e V-Ray) são marcas de seus respectivos titulares e aparecem apenas para identificar a formação e os softwares utilizados. Não são cobertos por nenhuma das duas licenças deste repositório.
 - Trabalhos acadêmicos em grupo estão identificados como tal, e os créditos são compartilhados com os demais integrantes.
 - Os Termos de Serviço do GitHub permitem que usuários da plataforma visualizem e façam "fork" de repositórios públicos dentro do próprio GitHub. Isso não concede nenhum outro direito de uso sobre o conteúdo.
 
