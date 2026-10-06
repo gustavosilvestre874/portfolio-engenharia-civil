@@ -18,6 +18,7 @@ PROJETOS = [
     "projetos/projeto-completo/chacara-igarata",
     "projetos/arquitetura/residencia-unifamiliar-ifsp",
     "projetos/arquitetura/reforma-de-cozinha",
+    "projetos/design-biofilico/escritorio-com-vista-para-jardim",
     "projetos/arquitetura/condominio-residencial",
     "projetos/topografia/levantamento-topografico-poli-usp",
     "projetos/desenho-tecnico/desenho-construcao-civil-ifsp",
@@ -29,8 +30,9 @@ CATEGORIAS = {
     "arquitetura": "Arquitetura",
     "topografia": "Topografia",
     "desenho-tecnico": "Desenho técnico",
+    "design-biofilico": "Design biofílico",
 }
-VERSAO = "9"  # aumente (e no index.html) ao mudar o CSS/JS, para os navegadores não usarem cache antigo
+VERSAO = "10"  # aumente (e no index.html) ao mudar o CSS/JS, para os navegadores não usarem cache antigo
 IMG_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 
 

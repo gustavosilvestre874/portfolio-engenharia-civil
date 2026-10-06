@@ -45,6 +45,9 @@ PROJETOS = [
     ("projetos/arquitetura/reforma-de-cozinha", "Interiores · Profissional · 2024",
      "Reforma de cozinha", "assets/img/cozinha.jpg",
      "Executivo em 12 folhas: 3D, plantas e vistas, marcenaria detalhada, quantitativo e marmoraria."),
+    ("projetos/design-biofilico/escritorio-com-vista-para-jardim", "Design biofílico · 3D",
+     "Escritório com vista para o jardim", "assets/img/escritorio-jardim.jpg",
+     "Home office com uma grande abertura para o jardim, baseado em estudos que associam a natureza a mais calma e concentração."),
     ("projetos/arquitetura/condominio-residencial", "Arquitetura · 2024",
      "Condomínio residencial", "assets/img/condominio.jpg",
      "Planta humanizada de pavimento-tipo com duas unidades, modelada em Revit."),
@@ -523,7 +526,7 @@ def pagina_sobre():
                      "Instalações hidrossanitárias (esgoto)",
                      "Concepção estrutural de residências (fundações, vigas, pilares)",
                      "Levantamento topográfico e planta planialtimétrica",
-                     "Projeto de interiores e marcenaria", "Espanhol avançado", "Inglês intermediário"]
+                     "Projeto de interiores e marcenaria", "Design biofílico: natureza e bem-estar nos ambientes", "Espanhol avançado", "Inglês intermediário"]
     out.append(bloco("Conhecimentos", [Paragraph("<br/>".join("• " + k for k in conhecimentos), S["muted"])], CW))
     return out
 
