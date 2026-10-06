@@ -19,6 +19,7 @@ PROJETOS = [
     "projetos/arquitetura/residencia-unifamiliar-ifsp",
     "projetos/arquitetura/reforma-de-cozinha",
     "projetos/design-biofilico/escritorio-com-vista-para-jardim",
+    "projetos/design-biofilico/dormitorio-para-descansar",
     "projetos/arquitetura/condominio-residencial",
     "projetos/topografia/levantamento-topografico-poli-usp",
     "projetos/desenho-tecnico/desenho-construcao-civil-ifsp",
@@ -32,7 +33,7 @@ CATEGORIAS = {
     "desenho-tecnico": "Desenho técnico",
     "design-biofilico": "Design biofílico",
 }
-VERSAO = "11"  # aumente (e no index.html) ao mudar o CSS/JS, para os navegadores não usarem cache antigo
+VERSAO = "12"  # aumente (e no index.html) ao mudar o CSS/JS, para os navegadores não usarem cache antigo
 IMG_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 
 
