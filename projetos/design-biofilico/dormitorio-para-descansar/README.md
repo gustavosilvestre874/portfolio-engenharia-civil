@@ -1,9 +1,9 @@
 # Dormitório para Descansar: Luz, Madeira e Calma
 
 **Conceito:** design biofílico e qualidade do sono  
-**Tipo:** <!-- PREENCHER: estudo pessoal, trabalho acadêmico ou projeto para cliente -->  
-**Entrega:** modelagem 3D e renders
-<!-- PREENCHER: ferramentas (ex.: SketchUp e V-Ray) -->
+**Tipo:** estudo pessoal  
+**Entrega:** modelagem 3D e renders  
+**Ferramentas:** SketchUp (modelagem) e V-Ray (renderização)
 
 ![Dormitório com painel de madeira e iluminação indireta](imagens/render-1.jpg)
 

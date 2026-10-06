@@ -48,7 +48,7 @@ PROJETOS = [
     ("projetos/design-biofilico/escritorio-com-vista-para-jardim", "Design biofílico · Estudo pessoal",
      "Escritório com vista para o jardim", "assets/img/escritorio-jardim.jpg",
      "Home office com uma grande abertura para o jardim, baseado em estudos que associam a natureza a mais calma e concentração."),
-    ("projetos/design-biofilico/dormitorio-para-descansar", "Design biofílico · 3D",
+    ("projetos/design-biofilico/dormitorio-para-descansar", "Design biofílico · Estudo pessoal",
      "Dormitório para descansar", "assets/img/dormitorio.jpg",
      "Quarto pensado para o descanso: luz quente e indireta, madeira, uma paisagem como ponto focal e tudo organizado."),
     ("projetos/arquitetura/condominio-residencial", "Arquitetura · 2024",
