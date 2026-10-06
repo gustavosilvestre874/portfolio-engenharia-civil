@@ -506,11 +506,11 @@ def pagina_sobre():
     out.append(Spacer(1, 12))
 
     softwares = [("revit-icone.svg", "Revit Architecture"), ("revit-icone.svg", "Revit MEP"),
-                 ("autocad-icone.svg", "AutoCAD"), ("inventor-icone.svg", "Inventor"), ("excel.svg", "Excel"),
+                 ("autocad-icone.svg", "AutoCAD"), ("inventor-icone.svg", "Inventor"), (None, "SketchUp"), (None, "V-Ray"), ("excel.svg", "Excel"),
                  ("word.svg", "Word"), ("powerpoint.svg", "PowerPoint")]
     linhas_sw, linha = [], []
     for logo, nome in softwares:
-        linha.append(Table([[imagem(logos / logo, 14, 14, moldura=False), Paragraph(nome, S["cell"])]],
+        linha.append(Table([[imagem(logos / logo, 14, 14, moldura=False) if logo else "", Paragraph(nome, S["cell"])]],
                            colWidths=[20, 100], style=[("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                                                        ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
         if len(linha) == 3:

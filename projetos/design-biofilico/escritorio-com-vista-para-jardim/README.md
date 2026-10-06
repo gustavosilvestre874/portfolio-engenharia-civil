@@ -2,7 +2,8 @@
 
 **Conceito:** design biofílico  
 **Tipo:** <!-- PREENCHER: estudo pessoal, trabalho acadêmico ou projeto para cliente -->  
-**Entrega:** modelagem 3D e renders
+**Entrega:** modelagem 3D e renders  
+**Ferramentas:** SketchUp (modelagem) e V-Ray (renderização)
 
 ![Escritório com vista para o jardim](imagens/render-1.jpg)
 
@@ -37,7 +38,6 @@ A relação entre natureza e bem-estar é estudada há décadas pela psicologia 
 | ![Vista geral do escritório](imagens/render-1.jpg) | ![Mesa de trabalho com o jardim ao lado](imagens/render-2.jpg) |
 | ![Detalhe do jardim e da mesa](imagens/render-3.jpg) | ![Vista da entrada do escritório](imagens/render-4.jpg) |
 
-<!-- PREENCHER: software usado na modelagem e nos renders -->
 
 ## Referências
 

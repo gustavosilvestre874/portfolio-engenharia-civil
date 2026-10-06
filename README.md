@@ -44,6 +44,8 @@ Sou comunicativo, organizado e detalhista, e gosto de aprender coisas novas. Bus
 - **Autodesk Revit**: Architecture e MEP (modelagem, quantitativos, tabelas, pranchas)
 - **AutoCAD**: nível avançado em cotas, plotagem, CTB e diagramação
 - **Autodesk Inventor**
+- **SketchUp**: modelagem 3D de interiores e marcenaria, com quantitativo de peças
+- **V-Ray**: renderização fotorrealista
 - **Microsoft Excel**: planilhas de memória de cálculo (carga térmica, dimensionamento de dutos)
 - Word e PowerPoint
 
