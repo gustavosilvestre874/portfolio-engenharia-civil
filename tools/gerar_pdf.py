@@ -44,7 +44,7 @@ PROJETOS = [
      "Do programa de necessidades ao detalhamento, em 11 pranchas: plantas, fachadas, cortes, áreas molhadas, implantação e estrutura."),
     ("projetos/arquitetura/reforma-de-cozinha", "Interiores · Profissional · 2024",
      "Reforma de cozinha", "assets/img/cozinha.png",
-     "Projeto executivo com bancada em L, torre quente, marcenaria detalhada e renders 3D."),
+     "Executivo em 12 folhas: 3D, plantas e vistas, marcenaria detalhada, quantitativo e marmoraria."),
     ("projetos/arquitetura/condominio-residencial", "Arquitetura · 2024",
      "Condomínio residencial", "assets/img/condominio.jpg",
      "Planta humanizada de pavimento-tipo com duas unidades, modelada em Revit."),

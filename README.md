@@ -29,7 +29,7 @@ Sou comunicativo, organizado e detalhista, e gosto de aprender coisas novas. Bus
 | [Climatização (HVAC) de escritório em Brasília](projetos/sistemas-prediais/climatizacao-hvac-escritorio-brasilia/) | Sistemas prediais | Poli-USP · PME3515 · 2026 | Carga térmica de 66.276 W, 2 UTAs por andar, chiller de água gelada, dutos e diagrama unifilar |
 | [Chácara em Igaratá – arquitetura, estrutura e esgoto](projetos/projeto-completo/chacara-igarata/) | Projeto completo | Profissional · 2025 | Residência unifamiliar de 117,75 m²: arquitetônico, estrutural preliminar e esgoto sanitário |
 | [Residência unifamiliar](projetos/arquitetura/residencia-unifamiliar-ifsp/) | Arquitetura | IFSP · PJIU4 | 11 pranchas: plantas, fachadas, cortes e detalhes, áreas molhadas, implantação e estrutura |
-| [Reforma de cozinha](projetos/arquitetura/reforma-de-cozinha/) | Arquitetura de interiores | Profissional · 2024 | Projeto executivo de cozinha com marcenaria e renders 3D |
+| [Reforma de cozinha](projetos/arquitetura/reforma-de-cozinha/) | Arquitetura de interiores | Profissional · 2024 | Executivo em 12 folhas: 3D, plantas e vistas, 5 folhas de marcenaria, quantitativo e marmoraria |
 | [Condomínio residencial](projetos/arquitetura/condominio-residencial/) | Arquitetura | 2024 | Planta humanizada de pavimento-tipo modelada em Revit |
 | [Levantamento topográfico na Cidade Universitária](projetos/topografia/levantamento-topografico-poli-usp/) | Topografia | Poli-USP · 2024 · em grupo | Poligonal de 5.693 m² com 432 pontos de detalhe |
 | [Desenho de Construção Civil](projetos/desenho-tecnico/desenho-construcao-civil-ifsp/) | Desenho técnico | IFSP · Desenho de Construção Civil · 2022 | 4 pranchas: plantas, cortes e gradil, vistas, detalhes e tabelas de esquadrias |
